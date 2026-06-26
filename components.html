@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Component Library — PayGlocal Design System</title>
+  <meta name="description" content="PayGlocal UI component library: tokens, logos, buttons, cards, tabs, and all reusable patterns used across the website." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & base ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      /* Brand tokens */
+      --bg:          #07091A;
+      --bg-2:        #0D1128;
+      --bg-3:        #121730;
+      --surface:     #161C35;
+      --surface-2:   #1E2540;
+      --accent:      #00D4A4;
+      --accent-dark: #00A880;
+      --accent-glow: rgba(0,212,164,0.15);
+      --blue:        #0061E3;
+      --purple:      #6C63FF;
+      --red:         #F87171;
+      --yellow:      #F59E0B;
+      --text:        #FFFFFF;
+      --text-2:      #A0AABF;
+      --text-3:      #5A6480;
+      --border:      rgba(255,255,255,0.08);
+      --border-2:    rgba(255,255,255,0.04);
+      --radius:      12px;
+      --radius-lg:   20px;
+      --radius-sm:   8px;
+      --font:        'Inter', system-ui, sans-serif;
+      --mono:        'Fira Code', 'Cascadia Code', monospace;
+      /* Library chrome */
+      --sidebar-w:   240px;
+      --top-h:       56px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ── Library top bar ───────────────────────────────────────── */
+    .lib-topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--top-h);
+      background: rgba(7,9,26,0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      gap: 16px;
+      z-index: 200;
+    }
+    .lib-topbar__logo { display: flex; align-items: center; }
+    .lib-topbar__logo img { height: 20px; width: auto; }
+    .lib-topbar__divider { width: 1px; height: 20px; background: var(--border); }
+    .lib-topbar__title { font-size: 13px; font-weight: 600; color: var(--text-3); letter-spacing: 0.05em; text-transform: uppercase; }
+    .lib-topbar__version {
+      margin-left: auto;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 100px;
+      background: var(--accent-glow);
+      color: var(--accent);
+      border: 1px solid rgba(0,212,164,0.2);
+    }
+
+    /* ── Sidebar ───────────────────────────────────────────────── */
+    .lib-sidebar {
+      position: fixed;
+      top: var(--top-h);
+      left: 0;
+      bottom: 0;
+      width: var(--sidebar-w);
+      background: var(--bg-2);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      padding: 24px 0 40px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--surface-2) transparent;
+    }
+    .lib-sidebar::-webkit-scrollbar { width: 4px; }
+    .lib-sidebar::-webkit-scrollbar-thumb { background: var(--surface-2); border-radius: 2px; }
+
+    .lib-sidebar__group { margin-bottom: 4px; }
+    .lib-sidebar__group-label {
+      padding: 8px 20px 4px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+    }
+    .lib-sidebar__link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 20px;
+      font-size: 13px;
+      color: var(--text-2);
+      border-left: 2px solid transparent;
+      transition: all 0.15s;
+    }
+    .lib-sidebar__link:hover { color: var(--text); background: rgba(255,255,255,0.03); }
+    .lib-sidebar__link.active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      background: var(--accent-glow);
+    }
+    .lib-sidebar__dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.5;
+      flex-shrink: 0;
+    }
+
+    /* ── Main content ──────────────────────────────────────────── */
+    .lib-main {
+      margin-left: var(--sidebar-w);
+      padding-top: var(--top-h);
+      min-height: 100vh;
+    }
+    .lib-page { max-width: 960px; margin: 0 auto; padding: 48px 48px 120px; }
+
+    /* ── Section ───────────────────────────────────────────────── */
+    .lib-section { margin-bottom: 80px; }
+    .lib-section__header { margin-bottom: 32px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    .lib-section__title { font-size: 24px; font-weight: 800; letter-spacing: -0.02em; }
+    .lib-section__desc { font-size: 14px; color: var(--text-2); margin-top: 6px; line-height: 1.6; }
+
+    /* ── Component frame ───────────────────────────────────────── */
+    .comp-frame {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+    .comp-frame__label {
+      padding: 8px 16px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      background: var(--bg-3);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .comp-frame__label-tag {
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 10px;
+      background: var(--surface-2);
+      color: var(--text-3);
+    }
+    .comp-frame__preview {
+      padding: 32px 24px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .comp-frame__preview--dark { background: #050714; }
+    .comp-frame__preview--light { background: #F8F9FC; }
+    .comp-frame__preview--grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+    .comp-frame__preview--col { flex-direction: column; align-items: flex-start; }
+    .comp-frame__preview--center { justify-content: center; }
+
+    /* ── Token row ─────────────────────────────────────────────── */
+    .token-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
+    .token-swatch {
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .token-swatch__color { height: 56px; }
+    .token-swatch__info { padding: 10px 12px; background: var(--surface); }
+    .token-swatch__name { font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+    .token-swatch__value { font-size: 11px; font-family: var(--mono); color: var(--text-3); }
+
+    /* ── Type scale ────────────────────────────────────────────── */
+    .type-row { display: flex; align-items: baseline; gap: 24px; padding: 16px 0; border-bottom: 1px solid var(--border-2); }
+    .type-row:last-child { border-bottom: none; }
+    .type-meta { width: 140px; flex-shrink: 0; font-size: 11px; font-family: var(--mono); color: var(--text-3); }
+    .type-meta strong { display: block; color: var(--text-2); font-size: 12px; margin-bottom: 2px; }
+
+    /* ── Spacing scale ─────────────────────────────────────────── */
+    .space-grid { display: flex; flex-direction: column; gap: 10px; }
+    .space-row { display: flex; align-items: center; gap: 16px; }
+    .space-bar { background: var(--accent); border-radius: 3px; height: 16px; flex-shrink: 0; }
+    .space-label { font-size: 12px; font-family: var(--mono); color: var(--text-3); }
+    .space-label strong { color: var(--text-2); }
+
+    /* ── Components from styles.css (copied for isolation) ──────── */
+    .tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 5px 12px; border-radius: 100px;
+      color: var(--accent); background: var(--accent-glow);
+      border: 1px solid rgba(0,212,164,0.2);
+    }
+    .tag--purple { color: #A78BFA; background: rgba(124,58,237,0.15); border-color: rgba(124,58,237,0.2); }
+    .tag--blue   { color: #60A5FA; background: rgba(59,130,246,0.12); border-color: rgba(59,130,246,0.2); }
+    .tag--red    { color: #F87171; background: rgba(248,113,113,0.1); border-color: rgba(248,113,113,0.2); }
+    .tag--yellow { color: #FBBF24; background: rgba(251,191,36,0.1);  border-color: rgba(251,191,36,0.2); }
+
+    .chip {
+      display: inline-flex; align-items: center;
+      font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 3px 9px; border-radius: 100px;
+      color: var(--accent); background: var(--accent-glow);
+      border: 1px solid rgba(0,212,164,0.18); white-space: nowrap;
+    }
+    .chip--domestic   { color: #60A5FA; background: rgba(59,130,246,0.1);   border-color: rgba(59,130,246,0.2); }
+    .chip--nextgen    { color: #A78BFA; background: rgba(124,58,237,0.1);   border-color: rgba(124,58,237,0.2); }
+    .chip--compliance { color: #34D399; background: rgba(52,211,153,0.1);   border-color: rgba(52,211,153,0.2); }
+    .chip--platform   { color: #F59E0B; background: rgba(245,158,11,0.1);   border-color: rgba(245,158,11,0.2); }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 26px; border-radius: var(--radius-sm);
+      font-size: 14px; font-weight: 600; letter-spacing: 0.01em;
+      transition: all 0.2s ease; white-space: nowrap; border: none; cursor: pointer;
+      font-family: var(--font);
+    }
+    .btn--primary { background: var(--accent); color: #07091A; }
+    .btn--primary:hover { background: #00e8b6; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,212,164,0.3); }
+    .btn--outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn--outline:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
+    .btn--ghost { background: transparent; color: var(--accent); padding-left: 0; }
+    .btn--ghost:hover { gap: 14px; }
+    .btn--danger { background: rgba(248,113,113,0.1); color: #F87171; border: 1px solid rgba(248,113,113,0.2); }
+    .btn--danger:hover { background: rgba(248,113,113,0.2); }
+    .btn--sm { padding: 9px 18px; font-size: 13px; }
+    .btn--lg { padding: 16px 32px; font-size: 16px; }
+    .btn:disabled { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+
+    .rbi-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 12px; border-radius: var(--radius-sm);
+      background: var(--accent-glow);
+      border: 1px solid rgba(0,212,164,0.2);
+      font-size: 11px; font-weight: 600; color: var(--accent); letter-spacing: 0.04em;
+    }
+
+    /* Cards */
+    .product-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 24px;
+      transition: all 0.25s; position: relative; overflow: hidden;
+    }
+    .product-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      opacity: 0; transition: opacity 0.25s;
+    }
+    .product-card:hover { border-color: rgba(0,212,164,0.2); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,0.3); }
+    .product-card:hover::before { opacity: 1; }
+    .product-card__header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .product-card__icon {
+      width: 40px; height: 40px; border-radius: 10px; background: var(--surface-2);
+      display: flex; align-items: center; justify-content: center; color: var(--accent);
+    }
+    .product-card__title { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+    .product-card__desc { font-size: 13px; color: var(--text-2); line-height: 1.6; margin-bottom: 16px; }
+    .product-card__link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--accent); transition: gap 0.15s; }
+    .product-card__link:hover { gap: 10px; }
+
+    .stat-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 24px;
+    }
+    .stat-card__value { font-size: 36px; font-weight: 800; letter-spacing: -0.03em; color: var(--accent); line-height: 1; margin-bottom: 4px; }
+    .stat-card__label { font-size: 13px; color: var(--text-2); }
+
+    .testimonial-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 24px;
+    }
+    .testimonial-card__stat { font-size: 36px; font-weight: 800; letter-spacing: -0.03em; color: var(--accent); line-height: 1; margin-bottom: 4px; }
+    .testimonial-card__stat-label { font-size: 12px; color: var(--text-2); margin-bottom: 16px; }
+    .testimonial-card__quote { font-size: 14px; color: var(--text-2); line-height: 1.7; font-style: italic; padding-left: 12px; border-left: 3px solid var(--accent); margin-bottom: 16px; }
+    .testimonial-card__author { display: flex; align-items: center; gap: 10px; }
+    .testimonial-card__avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--surface-2); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--accent); }
+    .testimonial-card__name { font-size: 13px; font-weight: 600; }
+    .testimonial-card__role { font-size: 11px; color: var(--text-3); }
+
+    .logo-grid-item {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 18px; transition: all 0.2s;
+    }
+    .logo-grid-item:hover { border-color: rgba(0,212,164,0.2); transform: translateY(-2px); }
+    .logo-grid-item__company { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .logo-grid-item__stat { font-size: 18px; font-weight: 800; color: var(--accent); letter-spacing: -0.02em; margin-bottom: 4px; }
+    .logo-grid-item__desc { font-size: 12px; color: var(--text-3); line-height: 1.5; }
+
+    /* Stats bar item */
+    .stats-item { display: flex; align-items: center; gap: 10px; padding: 8px 24px; border-right: 1px solid var(--border); }
+    .stats-item:last-child { border-right: none; }
+    .stats-item__value { font-size: 20px; font-weight: 800; color: var(--text); letter-spacing: -0.02em; }
+    .stats-item__label { font-size: 12px; color: var(--text-3); }
+
+    /* FAQ item */
+    .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 8px; }
+    .faq-item.open { border-color: rgba(0,212,164,0.2); }
+    .faq-question {
+      width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 18px 20px; text-align: left; font-size: 14px; font-weight: 600; color: var(--text);
+      background: transparent; cursor: pointer; transition: color 0.2s; border: none; font-family: var(--font);
+    }
+    .faq-question:hover { color: var(--accent); }
+    .faq-item.open .faq-question { color: var(--accent); }
+    .faq-chevron {
+      flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; background: var(--surface-2);
+      display: flex; align-items: center; justify-content: center; transition: transform 0.2s, background 0.2s; color: var(--text-3);
+    }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); background: var(--accent-glow); color: var(--accent); }
+    .faq-answer { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
+    .faq-item.open .faq-answer { padding: 0 20px 20px; max-height: 400px; }
+    .faq-answer p { font-size: 13px; color: var(--text-2); line-height: 1.7; }
+
+    /* Tabs */
+    .tabs-nav {
+      display: flex; gap: 4px; background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 4px; margin-bottom: 20px; width: fit-content;
+    }
+    .tabs-btn {
+      padding: 9px 20px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 600;
+      color: var(--text-2); background: transparent; transition: all 0.2s; border: none; cursor: pointer; font-family: var(--font);
+    }
+    .tabs-btn.active { background: var(--bg); color: var(--text); box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+    .tabs-btn:hover:not(.active) { color: var(--text); }
+
+    /* Code block */
+    .code-block { background: #0D1117; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+    .code-block__header {
+      display: flex; align-items: center; gap: 6px; padding: 10px 14px;
+      background: #161B22; border-bottom: 1px solid var(--border);
+    }
+    .code-block__dot { width: 11px; height: 11px; border-radius: 50%; }
+    .code-block__dot--r { background: #FF5F57; }
+    .code-block__dot--y { background: #FEBC2E; }
+    .code-block__dot--g { background: #28C840; }
+    .code-block__file { margin-left: 6px; font-size: 11px; color: var(--text-3); font-family: var(--mono); }
+    .code-block__body { padding: 20px; font-size: 12.5px; line-height: 1.8; font-family: var(--mono); overflow-x: auto; }
+    .code-block pre { margin: 0; white-space: pre; }
+    .c-comment { color: #6A9955; }
+    .c-kw { color: #569CD6; }
+    .c-str { color: #CE9178; }
+    .c-val { color: #B5CEA8; }
+    .c-key { color: #9CDCFE; }
+    .c-fn { color: #DCDCAA; }
+    .c-op { color: #D4D4D4; }
+
+    /* Floating badge */
+    .float-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 10px 14px; box-shadow: 0 4px 20px rgba(0,0,0,0.4); font-size: 12px; font-weight: 600;
+    }
+    .float-badge__icon {
+      width: 26px; height: 26px; border-radius: 7px; background: var(--accent-glow);
+      display: flex; align-items: center; justify-content: center; color: var(--accent);
+    }
+
+    /* Plugin badge */
+    .plugin-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 5px 10px; background: var(--surface-2); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); font-size: 11px; font-weight: 500; color: var(--text-2);
+    }
+
+    /* Divider */
+    .lib-divider { height: 1px; background: var(--border); margin: 40px 0; }
+
+    /* Sub-section title */
+    .sub-title { font-size: 13px; font-weight: 700; color: var(--text-3); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 12px; margin-top: 28px; }
+    .sub-title:first-of-type { margin-top: 0; }
+
+    /* Inline code */
+    code { font-family: var(--mono); font-size: 12px; padding: 2px 6px; background: var(--surface-2); border-radius: 4px; color: var(--accent); }
+
+    /* Nav preview */
+    .nav-preview {
+      background: rgba(7,9,26,0.97); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 12px;
+    }
+    .nav-preview__logo img { height: 20px; }
+    .nav-preview__links { display: flex; align-items: center; gap: 2px; flex: 1; margin-left: 8px; }
+    .nav-preview__link {
+      padding: 7px 12px; font-size: 13px; color: var(--text-2);
+      border-radius: var(--radius-sm); transition: all 0.15s;
+    }
+    .nav-preview__link:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .nav-preview__actions { display: flex; gap: 8px; margin-left: auto; }
+
+    /* Hero card preview */
+    .hero-card-preview {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 20px; width: 280px;
+    }
+    .hero-card__header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .hero-card__badge { padding: 3px 8px; border-radius: 100px; font-size: 10px; font-weight: 600; color: var(--accent); background: var(--accent-glow); }
+    .hero-card__label { font-size: 11px; color: var(--text-3); }
+    .hero-card__value { font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; margin-bottom: 4px; }
+    .hero-card__sub { font-size: 11px; color: var(--text-3); margin-bottom: 14px; }
+    .hero-card__bar { height: 5px; background: var(--surface-2); border-radius: 3px; margin-bottom: 10px; }
+    .hero-card__bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), #6C63FF); border-radius: 3px; }
+    .hero-card__row { display: flex; justify-content: space-between; padding: 6px 0; border-top: 1px solid var(--border-2); font-size: 11px; color: var(--text-3); }
+    .hero-card__row strong { color: var(--text); }
+
+    /* Footer brand preview */
+    .footer-brand-preview { padding: 24px; background: #050714; border-radius: var(--radius); }
+    .footer-brand__logo img { height: 20px; margin-bottom: 12px; }
+    .footer-brand__tagline { font-size: 13px; color: var(--text-3); line-height: 1.6; margin-bottom: 14px; max-width: 260px; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .lib-sidebar { display: none; }
+      .lib-main { margin-left: 0; }
+      .lib-page { padding: 32px 20px 80px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Top bar -->
+<header class="lib-topbar">
+  <div class="lib-topbar__logo">
+    <img src="assets/logos/logo-white.svg" alt="PayGlocal" />
+  </div>
+  <div class="lib-topbar__divider"></div>
+  <span class="lib-topbar__title">Design System</span>
+  <span class="lib-topbar__version">v1.0</span>
+</header>
+
+<!-- Sidebar -->
+<nav class="lib-sidebar" aria-label="Component library navigation">
+  <div class="lib-sidebar__group">
+    <div class="lib-sidebar__group-label">Foundation</div>
+    <a href="#logos"      class="lib-sidebar__link active"><span class="lib-sidebar__dot"></span>Logos</a>
+    <a href="#colors"     class="lib-sidebar__link"><span class="lib-sidebar__dot"></span>Color Tokens</a>
+    <a href="#typography" class="lib-sidebar__link"><span class="lib-sidebar__dot"></span>Typography</a>
+    <a href="#spacing"    class="lib-sidebar__link"><span class="lib-sidebar__dot"></span>Spacing</a>
+  </div>
+
+  <div class="lib-sidebar__group">
+    <div class="lib-sidebar__group-label">Components</div>
+    <a href="#buttons"     class="lib-sidebar__link"><span class="lib-sidebar__dot"></span>Buttons</a>
+    <a href="#tags"        class="lib-sidebar__link"><span class="lib-sidebar__dot"></span>Tags &amp; Chips</a>
+    <a href="#badges"      class="lib-sidebar__link"><span class="lib-sidebar__dot"></span>Badges</a>
+    <a href="#tabs"        class="lib-sidebar__link"><span class="lib-sidebar__dot"></span>Tabs</a>
+    <a href="#faq"         class="lib-sidebar__link"><span class="lib-sidebar__dot"></span>FAQ Accordion</a>
+    <a href="#codeblock"   class="lib-sidebar__link"><span class="lib-sidebar__dot"></span>Code Block</a>
+  </div>
+
+  <div class="lib-sidebar__group">
+    <div class="lib-sidebar__group-label">Patterns</div>
+    <a href="#navbar"      class="lib-sidebar__link"><span class="lib-sidebar__dot"></span>Navigation</a>
+    <a href="#stats-bar"   class="lib-sidebar__link"><span class="lib-sidebar__dot"></span>Stats Bar</a>
+    <a href="#hero-card"   class="lib-sidebar__link"><span class="lib-sidebar__dot"></span>Hero Card</a>
+    <a href="#product-cards" class="lib-sidebar__link"><span class="lib-sidebar__dot"></span>Product Cards</a>
+    <a href="#stat-cards"  class="lib-sidebar__link"><span class="lib-sidebar__dot"></span>Stat Cards</a>
+    <a href="#testimonials" class="lib-sidebar__link"><span class="lib-sidebar__dot"></span>Testimonials</a>
+    <a href="#logo-grid"   class="lib-sidebar__link"><span class="lib-sidebar__dot"></span>Logo Grid Item</a>
+    <a href="#float-badge" class="lib-sidebar__link"><span class="lib-sidebar__dot"></span>Float Badge</a>
+    <a href="#footer"      class="lib-sidebar__link"><span class="lib-sidebar__dot"></span>Footer Brand</a>
+  </div>
+</nav>
+
+<!-- Main -->
+<main class="lib-main">
+<div class="lib-page">
+
+  <!-- ── LOGOS ────────────────────────────────────────────────── -->
+  <section class="lib-section" id="logos">
+    <div class="lib-section__header">
+      <h2 class="lib-section__title">Logos</h2>
+      <p class="lib-section__desc">Three colour variants. Use <strong>white</strong> on dark backgrounds (nav, footer), <strong>blue</strong> for co-brand contexts on white, and <strong>black</strong> on light backgrounds. Source files live in <code>assets/logos/</code>.</p>
+    </div>
+
+    <div class="comp-frame">
+      <div class="comp-frame__label">White — on dark <span class="comp-frame__label-tag">logo-white.svg</span></div>
+      <div class="comp-frame__preview comp-frame__preview--dark" style="padding:40px 32px;">
+        <img src="assets/logos/logo-white.svg" alt="PayGlocal white logo" width="190" height="34" />
+      </div>
+    </div>
+
+    <div class="comp-frame">
+      <div class="comp-frame__label">Blue — brand colour <span class="comp-frame__label-tag">logo-blue.svg</span></div>
+      <div class="comp-frame__preview comp-frame__preview--light" style="padding:40px 32px;">
+        <img src="assets/logos/logo-blue.svg" alt="PayGlocal blue logo" width="190" height="34" />
+      </div>
+    </div>
+
+    <div class="comp-frame">
+      <div class="comp-frame__label">Black — on light surfaces <span class="comp-frame__label-tag">logo-black.svg</span></div>
+      <div class="comp-frame__preview comp-frame__preview--light" style="padding:40px 32px;">
+        <img src="assets/logos/logo-black.svg" alt="PayGlocal black logo" width="190" height="34" />
+      </div>
+    </div>
+
+    <div class="comp-frame">
+      <div class="comp-frame__label">Size variants</div>
+      <div class="comp-frame__preview comp-frame__preview--dark comp-frame__preview--col" style="gap:24px;padding:32px;">
+        <img src="assets/logos/logo-white.svg" alt="PayGlocal large" width="190" height="34" />
+        <img src="assets/logos/logo-white.svg" alt="PayGlocal medium" width="140" height="25" />
+        <img src="assets/logos/logo-white.svg" alt="PayGlocal small" width="96" height="17" />
+        <img src="assets/logos/logo-white.svg" alt="PayGlocal xsmall" width="72" height="13" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ── COLORS ───────────────────────────────────────────────── -->
+  <section class="lib-section" id="colors">
+    <div class="lib-section__header">
+      <h2 class="lib-section__title">Color Tokens</h2>
+      <p class="lib-section__desc">All colours are defined as CSS custom properties on <code>:root</code> in <code>styles.css</code>. Reference them as <code>var(--token-name)</code>.</p>
+    </div>
+
+    <div class="sub-title">Background</div>
+    <div class="token-grid">
+      <div class="token-swatch"><div class="token-swatch__color" style="background:#07091A"></div><div class="token-swatch__info"><div class="token-swatch__name">--bg</div><div class="token-swatch__value">#07091A</div></div></div>
+      <div class="token-swatch"><div class="token-swatch__color" style="background:#0D1128"></div><div class="token-swatch__info"><div class="token-swatch__name">--bg-2</div><div class="token-swatch__value">#0D1128</div></div></div>
+      <div class="token-swatch"><div class="token-swatch__color" style="background:#121730"></div><div class="token-swatch__info"><div class="token-swatch__name">--bg-3</div><div class="token-swatch__value">#121730</div></div></div>
+      <div class="token-swatch"><div class="token-swatch__color" style="background:#161C35"></div><div class="token-swatch__info"><div class="token-swatch__name">--surface</div><div class="token-swatch__value">#161C35</div></div></div>
+      <div class="token-swatch"><div class="token-swatch__color" style="background:#1E2540"></div><div class="token-swatch__info"><div class="token-swatch__name">--surface-2</div><div class="token-swatch__value">#1E2540</div></div></div>
+    </div>
+
+    <div class="sub-title">Brand</div>
+    <div class="token-grid">
+      <div class="token-swatch"><div class="token-swatch__color" style="background:#00D4A4"></div><div class="token-swatch__info"><div class="token-swatch__name">--accent</div><div class="token-swatch__value">#00D4A4</div></div></div>
+      <div class="token-swatch"><div class="token-swatch__color" style="background:#00A880"></div><div class="token-swatch__info"><div class="token-swatch__name">--accent-dark</div><div class="token-swatch__value">#00A880</div></div></div>
+      <div class="token-swatch"><div class="token-swatch__color" style="background:#0061E3"></div><div class="token-swatch__info"><div class="token-swatch__name">--blue</div><div class="token-swatch__value">#0061E3 (logo blue)</div></div></div>
+      <div class="token-swatch"><div class="token-swatch__color" style="background:#6C63FF"></div><div class="token-swatch__info"><div class="token-swatch__name">--purple</div><div class="token-swatch__value">#6C63FF</div></div></div>
+    </div>
+
+    <div class="sub-title">Text</div>
+    <div class="token-grid">
+      <div class="token-swatch"><div class="token-swatch__color" style="background:#FFFFFF;border-bottom:1px solid rgba(255,255,255,0.1)"></div><div class="token-swatch__info"><div class="token-swatch__name">--text</div><div class="token-swatch__value">#FFFFFF</div></div></div>
+      <div class="token-swatch"><div class="token-swatch__color" style="background:#A0AABF"></div><div class="token-swatch__info"><div class="token-swatch__name">--text-2</div><div class="token-swatch__value">#A0AABF</div></div></div>
+      <div class="token-swatch"><div class="token-swatch__color" style="background:#5A6480"></div><div class="token-swatch__info"><div class="token-swatch__name">--text-3</div><div class="token-swatch__value">#5A6480</div></div></div>
+    </div>
+
+    <div class="sub-title">Semantic</div>
+    <div class="token-grid">
+      <div class="token-swatch"><div class="token-swatch__color" style="background:#F87171"></div><div class="token-swatch__info"><div class="token-swatch__name">--red</div><div class="token-swatch__value">#F87171 (error/problem)</div></div></div>
+      <div class="token-swatch"><div class="token-swatch__color" style="background:#F59E0B"></div><div class="token-swatch__info"><div class="token-swatch__name">--yellow</div><div class="token-swatch__value">#F59E0B (platform)</div></div></div>
+      <div class="token-swatch"><div class="token-swatch__color" style="background:#34D399"></div><div class="token-swatch__info"><div class="token-swatch__name">compliance green</div><div class="token-swatch__value">#34D399</div></div></div>
+    </div>
+  </section>
+
+  <!-- ── TYPOGRAPHY ───────────────────────────────────────────── -->
+  <section class="lib-section" id="typography">
+    <div class="lib-section__header">
+      <h2 class="lib-section__title">Typography</h2>
+      <p class="lib-section__desc">All body text uses <strong>Inter</strong>. Code blocks use <strong>Fira Code</strong>. Font is loaded from Google Fonts.</p>
+    </div>
+
+    <div class="comp-frame">
+      <div class="comp-frame__label">Type scale</div>
+      <div class="comp-frame__preview comp-frame__preview--col" style="padding:24px 28px;">
+
+        <div class="type-row">
+          <div class="type-meta"><strong>Display</strong>56px / 800 / -0.02em</div>
+          <div style="font-size:56px;font-weight:800;letter-spacing:-0.02em;line-height:1.1;">Cross-Border</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta"><strong>H1</strong>44px / 800 / -0.02em</div>
+          <div style="font-size:44px;font-weight:800;letter-spacing:-0.02em;line-height:1.15;">Cross-Border Payments India</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta"><strong>H2</strong>32px / 800 / -0.02em</div>
+          <div style="font-size:32px;font-weight:800;letter-spacing:-0.02em;line-height:1.2;">Why do international payments fail?</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta"><strong>H3</strong>20px / 700</div>
+          <div style="font-size:20px;font-weight:700;line-height:1.3;">International Payment Gateway</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta"><strong>H4 / Card title</strong>16px / 700</div>
+          <div style="font-size:16px;font-weight:700;">Multi-Currency Account</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta"><strong>Body large</strong>17px / 400 / 1.7</div>
+          <div style="font-size:17px;color:var(--text-2);line-height:1.7;max-width:540px;">Collect international payments, send money abroad, process domestic transactions. It's all here, on one platform.</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta"><strong>Body</strong>14px / 400 / 1.65</div>
+          <div style="font-size:14px;color:var(--text-2);line-height:1.65;max-width:480px;">A high-performing international payment gateway built to maximise your cross-border payment success rate.</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta"><strong>Caption</strong>12px / 400</div>
+          <div style="font-size:12px;color:var(--text-3);">RBI-Authorised Payment Aggregator, Certificate No. 250/2025</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta"><strong>Label / Tag</strong>11px / 700 / 0.08em</div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-3);">Cross-Border</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="comp-frame">
+      <div class="comp-frame__label">Gradient text — accent treatment</div>
+      <div class="comp-frame__preview" style="padding:32px;">
+        <span style="font-size:36px;font-weight:800;letter-spacing:-0.02em;background:linear-gradient(135deg,var(--accent) 0%,#6C63FF 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">India's Cross-Border Payments Infrastructure</span>
+      </div>
+    </div>
+
+    <div class="comp-frame">
+      <div class="comp-frame__label">Monospace — Fira Code</div>
+      <div class="comp-frame__preview" style="padding:20px;">
+        <span style="font-family:var(--mono);font-size:13px;color:var(--accent);">'x-api-key': '&lt;API_KEY&gt;'</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SPACING ───────────────────────────────────────────────── -->
+  <section class="lib-section" id="spacing">
+    <div class="lib-section__header">
+      <h2 class="lib-section__title">Spacing</h2>
+      <p class="lib-section__desc">8px base unit. Border radii are defined as tokens. Padding scale used across sections and cards.</p>
+    </div>
+
+    <div class="comp-frame">
+      <div class="comp-frame__label">Spacing scale</div>
+      <div class="comp-frame__preview comp-frame__preview--col" style="padding:24px;">
+        <div class="space-grid">
+          <div class="space-row"><div class="space-bar" style="width:4px"></div><div class="space-label"><strong>4px</strong> — xs, icon gaps</div></div>
+          <div class="space-row"><div class="space-bar" style="width:8px"></div><div class="space-label"><strong>8px</strong> — sm, tight padding</div></div>
+          <div class="space-row"><div class="space-bar" style="width:12px"></div><div class="space-label"><strong>12px</strong> — inner chip padding</div></div>
+          <div class="space-row"><div class="space-bar" style="width:16px"></div><div class="space-label"><strong>16px</strong> — base gap</div></div>
+          <div class="space-row"><div class="space-bar" style="width:24px"></div><div class="space-label"><strong>24px</strong> — card padding (mobile)</div></div>
+          <div class="space-row"><div class="space-bar" style="width:32px"></div><div class="space-label"><strong>32px</strong> — container padding</div></div>
+          <div class="space-row"><div class="space-bar" style="width:48px"></div><div class="space-label"><strong>48px</strong> — section gap</div></div>
+          <div class="space-row"><div class="space-bar" style="width:64px"></div><div class="space-label"><strong>64px</strong> — section padding (sm)</div></div>
+          <div class="space-row"><div class="space-bar" style="width:96px"></div><div class="space-label"><strong>96px</strong> — section padding (default)</div></div>
+          <div class="space-row"><div class="space-bar" style="width:120px"></div><div class="space-label"><strong>120px</strong> — section padding (lg)</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp-frame">
+      <div class="comp-frame__label">Border radius</div>
+      <div class="comp-frame__preview" style="gap:20px;padding:28px;">
+        <div style="text-align:center;">
+          <div style="width:56px;height:56px;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;margin:0 auto 8px;"></div>
+          <div style="font-size:11px;font-family:var(--mono);color:var(--text-3);">--radius-sm<br>8px</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="width:56px;height:56px;background:var(--surface-2);border:1px solid var(--border);border-radius:12px;margin:0 auto 8px;"></div>
+          <div style="font-size:11px;font-family:var(--mono);color:var(--text-3);">--radius<br>12px</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="width:56px;height:56px;background:var(--surface-2);border:1px solid var(--border);border-radius:20px;margin:0 auto 8px;"></div>
+          <div style="font-size:11px;font-family:var(--mono);color:var(--text-3);">--radius-lg<br>20px</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="width:56px;height:56px;background:var(--surface-2);border:1px solid var(--border);border-radius:100px;margin:0 auto 8px;"></div>
+          <div style="font-size:11px;font-family:var(--mono);color:var(--text-3);">pill<br>100px</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BUTTONS ───────────────────────────────────────────────── -->
+  <section class="lib-section" id="buttons">
+    <div class="lib-section__header">
+      <h2 class="lib-section__title">Buttons</h2>
+      <p class="lib-section__desc">Four variants, three sizes. Primary CTAs use <code>.btn--primary</code>. Secondary actions use <code>.btn--outline</code>. Inline links use <code>.btn--ghost</code>.</p>
+    </div>
+
+    <div class="comp-frame">
+      <div class="comp-frame__label">Variants — default size</div>
+      <div class="comp-frame__preview">
+        <button class="btn btn--primary">
+          Get started
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="btn btn--outline">Talk to an expert</button>
+        <button class="btn btn--ghost">
+          Explore more
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="btn btn--danger">Delete</button>
+      </div>
+    </div>
+
+    <div class="comp-frame">
+      <div class="comp-frame__label">Sizes</div>
+      <div class="comp-frame__preview" style="align-items:center;">
+        <button class="btn btn--primary btn--lg">Large</button>
+        <button class="btn btn--primary">Default</button>
+        <button class="btn btn--primary btn--sm">Small</button>
+      </div>
+    </div>
+
+    <div class="comp-frame">
+      <div class="comp-frame__label">States</div>
+      <div class="comp-frame__preview">
+        <button class="btn btn--primary">Active</button>
+        <button class="btn btn--primary" disabled>Disabled</button>
+        <button class="btn btn--outline">Active</button>
+        <button class="btn btn--outline" disabled>Disabled</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TAGS & CHIPS ──────────────────────────────────────────── -->
+  <section class="lib-section" id="tags">
+    <div class="lib-section__header">
+      <h2 class="lib-section__title">Tags &amp; Chips</h2>
+      <p class="lib-section__desc"><strong>Tags</strong> are section identifiers at the top of content blocks. <strong>Chips</strong> are inline category labels on product cards — smaller, tighter padding.</p>
+    </div>
+
+    <div class="comp-frame">
+      <div class="comp-frame__label">Tags — section labels</div>
+      <div class="comp-frame__preview">
+        <span class="tag">
+          <svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor"><circle cx="4" cy="4" r="4"/></svg>
+          Cross-border
+        </span>
+        <span class="tag tag--purple">Next-gen</span>
+        <span class="tag tag--blue">Developers</span>
+        <span class="tag tag--red">The Problem</span>
+        <span class="tag tag--yellow">Partner Program</span>
+      </div>
+    </div>
+
+    <div class="comp-frame">
+      <div class="comp-frame__label">Chips — product card labels</div>
+      <div class="comp-frame__preview">
+        <span class="chip">Cross-border</span>
+        <span class="chip chip--domestic">Domestic</span>
+        <span class="chip chip--nextgen">Next-gen</span>
+        <span class="chip chip--compliance">Compliance</span>
+        <span class="chip chip--platform">Platform</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BADGES ───────────────────────────────────────────────── -->
+  <section class="lib-section" id="badges">
+    <div class="lib-section__header">
+      <h2 class="lib-section__title">Badges</h2>
+      <p class="lib-section__desc">Trust indicators and status markers used in the nav, hero, footer, and CTA strips.</p>
+    </div>
+
+    <div class="comp-frame">
+      <div class="comp-frame__label">RBI Authorised badge</div>
+      <div class="comp-frame__preview">
+        <span class="rbi-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/></svg>
+          RBI Authorised &bull; Cert. No. 250/2025
+        </span>
+      </div>
+    </div>
+
+    <div class="comp-frame">
+      <div class="comp-frame__label">Plugin badges</div>
+      <div class="comp-frame__preview">
+        <span class="plugin-badge">Shopify</span>
+        <span class="plugin-badge">WooCommerce</span>
+        <span class="plugin-badge">Magento</span>
+        <span class="plugin-badge">Upwork</span>
+        <span class="plugin-badge">Fiverr</span>
+        <span class="plugin-badge">Freelancer</span>
+      </div>
+    </div>
+
+    <div class="comp-frame">
+      <div class="comp-frame__label">"Live" indicator badge</div>
+      <div class="comp-frame__preview">
+        <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:100px;font-size:11px;font-weight:600;color:var(--accent);background:var(--accent-glow);border:1px solid rgba(0,212,164,0.2);">
+          <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 1.4s ease-in-out infinite;display:block;"></span>
+          Live
+        </span>
+        <style>@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }</style>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TABS ─────────────────────────────────────────────────── -->
+  <section class="lib-section" id="tabs">
+    <div class="lib-section__header">
+      <h2 class="lib-section__title">Tabs</h2>
+      <p class="lib-section__desc">Used in the Products section to switch between Collect / Optimise / Comply categories. Controlled by <code>initTabs()</code> in <code>script.js</code>.</p>
+    </div>
+
+    <div class="comp-frame">
+      <div class="comp-frame__label">Three-item tabs</div>
+      <div class="comp-frame__preview comp-frame__preview--col">
+        <div class="tabs-nav">
+          <button class="tabs-btn active" onclick="switchTab(this, 0)">Collect</button>
+          <button class="tabs-btn" onclick="switchTab(this, 1)">Optimise</button>
+          <button class="tabs-btn" onclick="switchTab(this, 2)">Comply</button>
+        </div>
+        <div id="demo-tab-0" style="font-size:13px;color:var(--text-2);padding:4px 0;">Tab 1 content: Collect — International Gateway, MCA, Agentic, Recurring, Domestic.</div>
+        <div id="demo-tab-1" style="font-size:13px;color:var(--text-2);padding:4px 0;display:none;">Tab 2 content: Optimise — Intelligent Routing, Fraud &amp; Risk, APMs, Echo.</div>
+        <div id="demo-tab-2" style="font-size:13px;color:var(--text-2);padding:4px 0;display:none;">Tab 3 content: Comply — FIRA Automation, RBI Stack, Security.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ACCORDION ────────────────────────────────────────── -->
+  <section class="lib-section" id="faq">
+    <div class="lib-section__header">
+      <h2 class="lib-section__title">FAQ Accordion</h2>
+      <p class="lib-section__desc">Single-expand accordion with smooth height transition. Controlled by <code>initFaq()</code>. Closing one item opens another.</p>
+    </div>
+
+    <div class="comp-frame">
+      <div class="comp-frame__label">FAQ item — collapsed &amp; expanded</div>
+      <div class="comp-frame__preview comp-frame__preview--col" style="padding:20px;">
+        <div class="faq-item open" style="width:100%">
+          <button class="faq-question" onclick="toggleFaq(this.closest('.faq-item'))">
+            Is PayGlocal RBI authorized?
+            <span class="faq-chevron">
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes. PayGlocal holds two RBI authorisations, Certificate No. 250/2025: PA-CB-I&amp;O (cross-border inward &amp; outward) and PA-O (online). PayGlocal is one of a small number of platforms in India holding both licences simultaneously.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" style="width:100%">
+          <button class="faq-question" onclick="toggleFaq(this.closest('.faq-item'))">
+            What is PayGlocal's payment success rate on international cards?
+            <span class="faq-chevron">
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <p>PayGlocal delivers up to 96% payment success rate (PSR) on international card transactions, against an industry average of 75-80% in India.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CODE BLOCK ───────────────────────────────────────────── -->
+  <section class="lib-section" id="codeblock">
+    <div class="lib-section__header">
+      <h2 class="lib-section__title">Code Block</h2>
+      <p class="lib-section__desc">Used in the Developer section. Mimics a macOS terminal window with syntax-highlighted content.</p>
+    </div>
+
+    <div class="comp-frame">
+      <div class="comp-frame__label">Syntax-highlighted code</div>
+      <div class="comp-frame__preview comp-frame__preview--col" style="padding:0;">
+        <div class="code-block" style="width:100%;border-radius:0;border:none;">
+          <div class="code-block__header">
+            <div class="code-block__dot code-block__dot--r"></div>
+            <div class="code-block__dot code-block__dot--y"></div>
+            <div class="code-block__dot code-block__dot--g"></div>
+            <span class="code-block__file">create-payment.js</span>
+          </div>
+          <div class="code-block__body">
+<pre><code><span class="c-comment">// Create a cross-border payment session</span>
+<span class="c-kw">const</span> <span class="c-key">response</span> <span class="c-op">=</span> <span class="c-kw">await</span> <span class="c-fn">fetch</span>(<span class="c-str">'https://api.payglocal.in/gl/v1/payments/initiate'</span>, {
+  method: <span class="c-str">'POST'</span>,
+  headers: {
+    <span class="c-str">'x-api-key'</span>: <span class="c-str">'&lt;API_KEY&gt;'</span>,
+    <span class="c-str">'x-merchant-id'</span>: <span class="c-str">'&lt;MERCHANT_ID&gt;'</span>
+  },
+  body: <span class="c-fn">JSON.stringify</span>({
+    <span class="c-key">totalAmount</span>: <span class="c-val">100.00</span>,
+    <span class="c-key">txnCurrency</span>: <span class="c-str">'USD'</span>
+  })
+});
+<span class="c-kw">const</span> { <span class="c-key">redirectURL</span> } <span class="c-op">=</span> <span class="c-kw">await</span> <span class="c-key">response</span>.<span class="c-fn">json</span>();</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── NAVIGATION ───────────────────────────────────────────── -->
+  <section class="lib-section" id="navbar">
+    <div class="lib-section__header">
+      <h2 class="lib-section__title">Navigation</h2>
+      <p class="lib-section__desc">Fixed top bar. Uses <code>logo-white.svg</code> at 140 × 25px. Background opacity increases on scroll via <code>initNav()</code>.</p>
+    </div>
+
+    <div class="comp-frame">
+      <div class="comp-frame__label">Navigation bar preview</div>
+      <div class="comp-frame__preview comp-frame__preview--dark" style="padding:0;">
+        <div class="nav-preview" style="width:100%;border-radius:0;">
+          <div class="nav-preview__logo">
+            <img src="assets/logos/logo-white.svg" alt="PayGlocal" />
+          </div>
+          <div class="nav-preview__links">
+            <a href="#" class="nav-preview__link">Products</a>
+            <a href="#" class="nav-preview__link">Solutions</a>
+            <a href="#" class="nav-preview__link">Developers</a>
+            <a href="#" class="nav-preview__link">Pricing</a>
+          </div>
+          <div class="nav-preview__actions">
+            <button class="btn btn--outline btn--sm">Log in</button>
+            <button class="btn btn--primary btn--sm">Get started</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── STATS BAR ─────────────────────────────────────────────── -->
+  <section class="lib-section" id="stats-bar">
+    <div class="lib-section__header">
+      <h2 class="lib-section__title">Stats Bar</h2>
+      <p class="lib-section__desc">Pinned below the hero. Four key metrics separated by 1px dividers. The values animate in via <code>animateCounter()</code> when scrolled into view.</p>
+    </div>
+
+    <div class="comp-frame">
+      <div class="comp-frame__label">Stats bar</div>
+      <div class="comp-frame__preview comp-frame__preview--dark" style="padding:0;">
+        <div style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);width:100%;display:flex;flex-wrap:wrap;">
+          <div class="stats-item"><span class="stats-item__value">8,000+</span><span class="stats-item__label">Merchants</span></div>
+          <div class="stats-item"><span class="stats-item__value">Up to 96%</span><span class="stats-item__label">Payment success rate</span></div>
+          <div class="stats-item"><span class="stats-item__value">$4B+</span><span class="stats-item__label">Cross-border payments</span></div>
+          <div class="stats-item"><span class="stats-item__value">180+</span><span class="stats-item__label">Countries</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HERO CARD ─────────────────────────────────────────────── -->
+  <section class="lib-section" id="hero-card">
+    <div class="lib-section__header">
+      <h2 class="lib-section__title">Hero Card</h2>
+      <p class="lib-section__desc">Data card used in the hero visual. Displays PSR stat, progress bar, and comparison rows. Stacked in a three-card arrangement with rotation and z-index layering.</p>
+    </div>
+
+    <div class="comp-frame">
+      <div class="comp-frame__label">PSR card (main)</div>
+      <div class="comp-frame__preview comp-frame__preview--dark comp-frame__preview--center">
+        <div class="hero-card-preview">
+          <div class="hero-card__header">
+            <span class="hero-card__label">Payment success rate</span>
+            <span class="hero-card__badge">Live</span>
+          </div>
+          <div class="hero-card__value" style="color:var(--text);">96<span style="color:var(--accent);">%</span></div>
+          <div class="hero-card__sub">vs. 75-80% industry average</div>
+          <div class="hero-card__bar"><div class="hero-card__bar-fill" style="width:96%;"></div></div>
+          <div class="hero-card__row"><span>Industry avg.</span><strong>75-80%</strong></div>
+          <div class="hero-card__row"><span>PayGlocal</span><strong style="color:var(--accent);">Up to 96%</strong></div>
+          <div class="hero-card__row"><span>FIRA/FIRC</span><strong style="color:var(--accent);">Auto-generated</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PRODUCT CARDS ─────────────────────────────────────────── -->
+  <section class="lib-section" id="product-cards">
+    <div class="lib-section__header">
+      <h2 class="lib-section__title">Product Cards</h2>
+      <p class="lib-section__desc">Used in the tabbed products section. Hover reveals a teal top-border gradient. Each card has an icon, title, description, and an arrow link.</p>
+    </div>
+
+    <div class="comp-frame">
+      <div class="comp-frame__label">Product card</div>
+      <div class="comp-frame__preview comp-frame__preview--grid" style="padding:20px;gap:14px;">
+        <div class="product-card">
+          <div class="product-card__header">
+            <div class="product-card__icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2 10h20" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            <span class="chip">Cross-border</span>
+          </div>
+          <div class="product-card__title">International Payment Gateway</div>
+          <div class="product-card__desc">A high-performing payment gateway built to maximise your cross-border success rate.</div>
+          <a href="#" class="product-card__link">Explore <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+        <div class="product-card">
+          <div class="product-card__header">
+            <div class="product-card__icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <span class="chip">Cross-border</span>
+          </div>
+          <div class="product-card__title">Multi-Currency Account</div>
+          <div class="product-card__desc">Collect in USD, GBP, EUR, CAD and AUD via local bank rails, with no SWIFT fees.</div>
+          <a href="#" class="product-card__link">Explore <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── STAT CARDS ────────────────────────────────────────────── -->
+  <section class="lib-section" id="stat-cards">
+    <div class="lib-section__header">
+      <h2 class="lib-section__title">Stat Cards</h2>
+      <p class="lib-section__desc">Used in the "Why PayGlocal" section. Large number/metric in teal, label below. Wide variant spans two columns.</p>
+    </div>
+
+    <div class="comp-frame">
+      <div class="comp-frame__label">Stat cards — grid</div>
+      <div class="comp-frame__preview comp-frame__preview--grid" style="padding:20px;gap:14px;">
+        <div class="stat-card" style="grid-column:span 2">
+          <div class="stat-card__value">Up to 96%</div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:8px;">Cross-border payment success rate</div>
+          <div class="stat-card__label">Intelligent routing, issuer-level logic and real-time fraud scoring - against a 75-80% industry average.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__value">180+</div>
+          <div style="font-size:13px;font-weight:700;margin-bottom:6px;">Countries supported</div>
+          <div class="stat-card__label">Inward, outward and domestic on one RBI-authorised stack.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__value">$4B+</div>
+          <div style="font-size:13px;font-weight:700;margin-bottom:6px;">Cross-border payments processed</div>
+          <div class="stat-card__label">For 8,000+ merchants across every vertical.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIALS ──────────────────────────────────────────── -->
+  <section class="lib-section" id="testimonials">
+    <div class="lib-section__header">
+      <h2 class="lib-section__title">Testimonial Card</h2>
+      <p class="lib-section__desc">Featured customer story card. Displays a headline stat, pull-quote with left border accent, and author attribution.</p>
+    </div>
+
+    <div class="comp-frame">
+      <div class="comp-frame__label">Featured testimonial</div>
+      <div class="comp-frame__preview comp-frame__preview--grid" style="padding:20px;gap:14px;">
+        <div class="testimonial-card">
+          <span style="display:inline-block;margin-bottom:12px;padding:3px 9px;border-radius:100px;font-size:11px;font-weight:600;color:var(--text-3);background:var(--surface-2);">Travel &bull; Enterprise</span>
+          <div class="testimonial-card__stat">96%+</div>
+          <div class="testimonial-card__stat-label">Cross-border payment success rate on international cards</div>
+          <blockquote class="testimonial-card__quote">"PayGlocal has transformed how we handle international payments. The improvement in our success rate has directly translated to revenue."</blockquote>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">MM</div>
+            <div>
+              <div class="testimonial-card__name">MakeMyTrip</div>
+              <div class="testimonial-card__role">Travel &bull; Enterprise</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <span style="display:inline-block;margin-bottom:12px;padding:3px 9px;border-radius:100px;font-size:11px;font-weight:600;color:var(--text-3);background:var(--surface-2);">Edtech &bull; Recurring</span>
+          <div class="testimonial-card__stat" style="font-size:28px;">75% <span style="font-size:16px;color:var(--text-2);">to</span> 95%</div>
+          <div class="testimonial-card__stat-label">International payment approval rate improvement</div>
+          <blockquote class="testimonial-card__quote">"Switching to PayGlocal took our international approval rate from 75% to 95%. For a recurring payments business, that change is transformative."</blockquote>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">CY</div>
+            <div>
+              <div class="testimonial-card__name">Codeyoung</div>
+              <div class="testimonial-card__role">Edtech &bull; Recurring</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── LOGO GRID ITEM ────────────────────────────────────────── -->
+  <section class="lib-section" id="logo-grid">
+    <div class="lib-section__header">
+      <h2 class="lib-section__title">Logo Grid Item</h2>
+      <p class="lib-section__desc">Compact customer outcome card in the 9-tile logo grid. Shows a merchant name, headline metric in teal, and one-line outcome description.</p>
+    </div>
+
+    <div class="comp-frame">
+      <div class="comp-frame__label">Logo grid — 3-column sample</div>
+      <div class="comp-frame__preview comp-frame__preview--grid" style="padding:20px;gap:12px;">
+        <div class="logo-grid-item"><div class="logo-grid-item__company">FlowerAura</div><div class="logo-grid-item__stat">72% to 88%</div><div class="logo-grid-item__desc">International card conversion after switching to PayGlocal's cross-border gateway.</div></div>
+        <div class="logo-grid-item"><div class="logo-grid-item__company">The Loom</div><div class="logo-grid-item__stat">88-90%</div><div class="logo-grid-item__desc">Cross-border PSR sustained through Diwali, Eid, and Christmas peak volumes.</div></div>
+        <div class="logo-grid-item"><div class="logo-grid-item__company">GlobalBees</div><div class="logo-grid-item__stat">40% FX savings</div><div class="logo-grid-item__desc">FIRC automation cut settlement documentation from 3 days to instant.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FLOAT BADGE ───────────────────────────────────────────── -->
+  <section class="lib-section" id="float-badge">
+    <div class="lib-section__header">
+      <h2 class="lib-section__title">Float Badge</h2>
+      <p class="lib-section__desc">Animated floating badges overlaid on the hero card stack. Two per hero: top-left and bottom-right. Each has a tinted icon and a short label.</p>
+    </div>
+
+    <div class="comp-frame">
+      <div class="comp-frame__label">Float badges</div>
+      <div class="comp-frame__preview" style="gap:16px;">
+        <div class="float-badge">
+          <div class="float-badge__icon">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/></svg>
+          </div>
+          RBI Authorised
+        </div>
+        <div class="float-badge">
+          <div class="float-badge__icon">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="currentColor" stroke-width="1.5"/><path d="M14 2v6h6M9 13h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          FIRA auto-generated
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER BRAND ──────────────────────────────────────────── -->
+  <section class="lib-section" id="footer">
+    <div class="lib-section__header">
+      <h2 class="lib-section__title">Footer Brand Block</h2>
+      <p class="lib-section__desc">Left column of the 5-column footer grid. Contains the white logo, tagline, and RBI badge. Background is <code>#050714</code>.</p>
+    </div>
+
+    <div class="comp-frame">
+      <div class="comp-frame__label">Footer brand — dark</div>
+      <div class="comp-frame__preview comp-frame__preview--dark" style="padding:32px;">
+        <div class="footer-brand-preview">
+          <div class="footer-brand__logo">
+            <img src="assets/logos/logo-white.svg" alt="PayGlocal" width="140" height="25" />
+          </div>
+          <p class="footer-brand__tagline">India's RBI-authorised end-to-end cross-border payments infrastructure. International + domestic on one stack.</p>
+          <span class="rbi-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/></svg>
+            RBI Authorised &bull; Cert. No. 250/2025
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</main>
+
+<script>
+  // Tab demo
+  function switchTab(btn, idx) {
+    btn.closest('.tabs-nav').querySelectorAll('.tabs-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    ['demo-tab-0','demo-tab-1','demo-tab-2'].forEach((id, i) => {
+      document.getElementById(id).style.display = i === idx ? 'block' : 'none';
+    });
+  }
+
+  // FAQ demo
+  function toggleFaq(item) {
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Sidebar active link on scroll
+  const sections = document.querySelectorAll('.lib-section');
+  const links = document.querySelectorAll('.lib-sidebar__link');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  sections.forEach(s => obs.observe(s));
+</script>
+
+</body>
+</html>
