@@ -25,7 +25,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="styles.css" />
@@ -407,74 +407,151 @@
      WHY PAYGLOCAL (F03 continued)
      ============================================================ -->
 <section class="section section--why" id="why" aria-labelledby="why-heading">
-  <div class="why__container">
+  <div class="why__pin">
 
+    <!-- Left: heading only -->
     <div class="why__left">
-      <div class="why__label reveal">
-        <span class="tag">Why PayGlocal</span>
-      </div>
+      <div class="why__label reveal"><span class="tag">Why PayGlocal</span></div>
       <h2 class="why__heading reveal" id="why-heading">
-        Most platforms treat<br>cross-border as a feature.<br>
-        <em>We built the entire<br>platform around it.</em>
+        <span class="why__heading-small">Most platforms treat cross-border as a feature.</span>
+        <em>We built the entire platform around it.</em>
       </h2>
-      <p class="why__sub reveal reveal--delay-1">When cross-border payments are an afterthought, the infrastructure shows it: failed transactions, missing compliance documents, FX rates you can't audit. PayGlocal was built cross-border-first from day one.</p>
-
-      <div class="why__cards">
-        <div class="why__card">
-          <div class="why__card-icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <div class="why__card-body">
-            <div class="why__card-stat">Up to 96%</div>
-            <div class="why__card-title">Cross-border payment success rate</div>
-            <div class="why__card-desc">Intelligent routing, issuer-level logic and real-time fraud scoring engineered to approve more international payments on the first attempt - against a 75-80% industry average in India.</div>
-          </div>
-        </div>
-
-        <div class="why__card">
-          <div class="why__card-icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="currentColor" stroke-width="2"/><path d="M14 2v6h6M9 13h6M9 17h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          </div>
-          <div class="why__card-body">
-            <div class="why__card-title">FIRA automation on every inward remittance</div>
-            <div class="why__card-desc">Every cross-border payment into India requires remittance documentation. PayGlocal generates FIRA automatically at settlement and delivers it to your inbox. No bank visit, no wait.</div>
-          </div>
-        </div>
-
-        <div class="why__card">
-          <div class="why__card-icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2"/></svg>
-          </div>
-          <div class="why__card-body">
-            <div class="why__card-title">RBI-authorised: PA-CB (inward + outward) and PA-O</div>
-            <div class="why__card-desc">One of the few platforms in India holding both the cross-border and online payment aggregator licences from the RBI (Certificate No. 250/2025). Every transaction fully authorised and fully compliant.</div>
-          </div>
-        </div>
-
-        <div class="why__card">
-          <div class="why__card-icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="currentColor" stroke-width="2"/></svg>
-          </div>
-          <div class="why__card-body">
-            <div class="why__card-title">Inward, outward and domestic. One platform.</div>
-            <div class="why__card-desc">International payments coming in, outward remittances going out, domestic payments across India. One RBI-authorised stack, one integration, one reconciliation.</div>
-          </div>
-        </div>
-
-        <div class="why__card">
-          <div class="why__card-icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <div class="why__card-body">
-            <div class="why__card-title">A fraud engine that blocks threats, not customers</div>
-            <div class="why__card-desc">Device, card and location signals scored in real time before every authorisation - built to separate bad actors from genuine buyers, so your approval rate goes up.</div>
-          </div>
-        </div>
-      </div>
+      <p class="why__sub reveal reveal--delay-1">When cross-border payments are an afterthought, the infrastructure shows it: failed transactions, missing compliance documents, FX rates you can't audit.</p>
     </div>
 
-    <div class="why__right">
-      <img src="assets/logos/UI.png" alt="PayGlocal dashboard" class="why__ui-img">
+    <!-- Right area: phone + step list side by side -->
+    <div class="why__phone-area">
+
+      <div class="why__phone-col">
+        <div class="why__phone" aria-label="PayGlocal feature preview">
+          <div class="why__phone-island" aria-hidden="true"></div>
+          <div class="why__phone-screen">
+
+            <!-- Status bar -->
+            <div class="why__phone-statusbar" aria-hidden="true">
+              <span class="why__phone-time">9:41</span>
+              <div class="why__phone-icons">
+                <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="5" width="3" height="6" rx="0.5" fill="currentColor" opacity="0.3"/><rect x="4.5" y="3" width="3" height="8" rx="0.5" fill="currentColor" opacity="0.5"/><rect x="9" y="1" width="3" height="10" rx="0.5" fill="currentColor" opacity="0.7"/><rect x="13.5" y="0" width="2.5" height="11" rx="0.5" fill="currentColor"/></svg>
+                <svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x="0.5" y="0.5" width="18" height="10" rx="2.5" stroke="currentColor" opacity="0.35"/><rect x="2" y="2" width="14" height="7" rx="1.5" fill="currentColor"/><path d="M20 3.5v4c.8-.3 1.3-.9 1.3-2S20.8 3.8 20 3.5z" fill="currentColor" opacity="0.4"/></svg>
+              </div>
+            </div>
+
+            <!-- Slides -->
+            <div class="why__phone-slides">
+
+              <div class="why__slide why__slide--active" data-idx="0">
+                <span class="why__slide-chip">Success Rate</span>
+                <div class="why__slide-metric">Up to 96%</div>
+                <h3 class="why__slide-title">Cross-border payment success rate</h3>
+                <p class="why__slide-desc">Intelligent routing, issuer-level logic and real-time fraud scoring engineered to approve more international payments on the first attempt.</p>
+                <div class="why__slide-note">vs 75-80% industry average in India</div>
+              </div>
+
+              <div class="why__slide" data-idx="1">
+                <span class="why__slide-chip why__slide-chip--green">Compliance</span>
+                <h3 class="why__slide-title">FIRA automation on every inward remittance</h3>
+                <p class="why__slide-desc">Every cross-border payment into India requires remittance documentation. PayGlocal generates FIRA automatically at settlement and delivers it to your inbox.</p>
+                <div class="why__slide-note">No bank visit. No wait.</div>
+              </div>
+
+              <div class="why__slide" data-idx="2">
+                <span class="why__slide-chip why__slide-chip--purple">Licensed</span>
+                <h3 class="why__slide-title">RBI-authorised: PA-CB and PA-O</h3>
+                <p class="why__slide-desc">One of the few platforms in India holding both cross-border and online PA licences from the RBI. Every transaction fully authorised and fully compliant.</p>
+                <div class="why__slide-note">Certificate No. 250/2025</div>
+              </div>
+
+              <div class="why__slide" data-idx="3">
+                <span class="why__slide-chip why__slide-chip--amber">Platform</span>
+                <h3 class="why__slide-title">Inward, outward and domestic. One platform.</h3>
+                <p class="why__slide-desc">International payments in, outward remittances out, domestic payments across India. One RBI-authorised stack, one integration, one reconciliation.</p>
+              </div>
+
+              <div class="why__slide" data-idx="4">
+                <span class="why__slide-chip why__slide-chip--red">Security</span>
+                <h3 class="why__slide-title">A fraud engine that blocks threats, not customers</h3>
+                <p class="why__slide-desc">Device, card and location signals scored in real time before every authorisation, built to separate bad actors from genuine buyers.</p>
+                <div class="why__slide-note">Real-time scoring</div>
+              </div>
+
+            </div>
+
+            <!-- Nav bar: prev | dots | next -->
+            <div class="why__phone-nav">
+              <button class="why__phone-prev" type="button" aria-label="Previous feature">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="why__phone-dots" aria-hidden="true">
+                <span class="why__phone-dot why__phone-dot--active"></span>
+                <span class="why__phone-dot"></span>
+                <span class="why__phone-dot"></span>
+                <span class="why__phone-dot"></span>
+                <span class="why__phone-dot"></span>
+              </div>
+              <button class="why__phone-next" type="button" aria-label="Next feature">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Step list: to the right of phone -->
+      <nav class="why__steps" aria-label="Features">
+        <button class="why__step why__step--active" data-idx="0" type="button">
+          <span class="why__step-track" aria-hidden="true"><span class="why__step-fill"></span></span>
+          <span class="why__step-text">Cross-border success rate</span>
+        </button>
+        <button class="why__step" data-idx="1" type="button">
+          <span class="why__step-track" aria-hidden="true"><span class="why__step-fill"></span></span>
+          <span class="why__step-text">FIRA automation</span>
+        </button>
+        <button class="why__step" data-idx="2" type="button">
+          <span class="why__step-track" aria-hidden="true"><span class="why__step-fill"></span></span>
+          <span class="why__step-text">RBI-authorised</span>
+        </button>
+        <button class="why__step" data-idx="3" type="button">
+          <span class="why__step-track" aria-hidden="true"><span class="why__step-fill"></span></span>
+          <span class="why__step-text">One platform</span>
+        </button>
+        <button class="why__step" data-idx="4" type="button">
+          <span class="why__step-track" aria-hidden="true"><span class="why__step-fill"></span></span>
+          <span class="why__step-text">Fraud engine</span>
+        </button>
+      </nav>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     STATS (F03B)
+     ============================================================ -->
+<section class="section section--stats" id="stats" aria-label="PayGlocal by the numbers">
+  <canvas class="stats__wave" id="stats-wave" aria-hidden="true"></canvas>
+  <div class="stats__inner">
+
+    <div class="stats__item reveal">
+      <div class="stats__num" data-target="8000" data-suffix="+">8,000+</div>
+      <p class="stats__label">merchants</p>
+    </div>
+
+    <div class="stats__item reveal reveal--delay-1">
+      <div class="stats__num" data-target="96" data-prefix="Up to " data-suffix="%">Up to 96%</div>
+      <p class="stats__label">PSR</p>
+    </div>
+
+    <div class="stats__item reveal reveal--delay-2">
+      <div class="stats__num" data-target="4" data-prefix="$" data-suffix="B+">$4B+</div>
+      <p class="stats__label">cross-border payments processed</p>
+    </div>
+
+    <div class="stats__item reveal reveal--delay-3">
+      <div class="stats__num" data-target="180" data-suffix="+">180+</div>
+      <p class="stats__label">countries</p>
     </div>
 
   </div>
@@ -491,7 +568,7 @@
         <span class="tag">Products</span>
       </div>
       <h2 class="section__heading reveal" id="products-heading">
-        The complete cross-border and domestic payments stack<br>
+        The complete <span class="products__heading-accent">cross-border and domestic payments</span> stack<br>
         <em>built for every flow</em>
       </h2>
       <p class="section__sub section__sub--center reveal">
@@ -508,8 +585,9 @@
 
       <!-- Tab 1: Collect -->
       <div class="tabs__panel active" id="tab-collect" role="tabpanel" aria-labelledby="btn-collect">
+        <div class="products__carousel">
         <div class="products__grid">
-          <div class="product-card reveal">
+          <div class="product-card reveal" data-illus-src="assets/logos/International payment gateway.png">
             <div class="product-card__header">
               <div class="product-card__icon" aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2 10h20" stroke="currentColor" stroke-width="1.5"/></svg>
@@ -524,7 +602,7 @@
             </a>
           </div>
 
-          <div class="product-card reveal">
+          <div class="product-card reveal" data-illus-src="assets/logos/Multi-currency account.png">
             <div class="product-card__header">
               <div class="product-card__icon" aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
@@ -539,7 +617,7 @@
             </a>
           </div>
 
-          <div class="product-card reveal">
+          <div class="product-card reveal" data-illus-src="assets/logos/Agentic commerce.png">
             <div class="product-card__header">
               <div class="product-card__icon" aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -554,7 +632,7 @@
             </a>
           </div>
 
-          <div class="product-card reveal">
+          <div class="product-card reveal" data-illus-src="assets/logos/Reccuring payments.png">
             <div class="product-card__header">
               <div class="product-card__icon" aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M17 1l4 4-4 4M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4M21 13v2a4 4 0 0 1-4 4H3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -569,7 +647,7 @@
             </a>
           </div>
 
-          <div class="product-card reveal" style="grid-column: span 2;">
+          <div class="product-card reveal" data-illus-src="assets/logos/Domestic payment gatewaty.png">
             <div class="product-card__header">
               <div class="product-card__icon" aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 12h18M12 3l9 9-9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -584,10 +662,20 @@
             </a>
           </div>
         </div>
+        <div class="products__carousel-nav">
+          <button class="products__carousel-btn" type="button" aria-label="Previous product" data-dir="-1">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="products__carousel-btn" type="button" aria-label="Next product" data-dir="1">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        </div>
       </div>
 
       <!-- Tab 2: Optimise -->
       <div class="tabs__panel" id="tab-optimise" role="tabpanel" aria-labelledby="btn-optimise">
+        <div class="products__carousel">
         <div class="products__grid">
           <div class="product-card">
             <div class="product-card__header">
@@ -637,10 +725,20 @@
             <a href="#" class="product-card__link">Explore Echo <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           </div>
         </div>
+        <div class="products__carousel-nav">
+          <button class="products__carousel-btn" type="button" aria-label="Previous product" data-dir="-1">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="products__carousel-btn" type="button" aria-label="Next product" data-dir="1">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        </div>
       </div>
 
       <!-- Tab 3: Comply -->
       <div class="tabs__panel" id="tab-comply" role="tabpanel" aria-labelledby="btn-comply">
+        <div class="products__carousel">
         <div class="products__grid">
           <div class="product-card">
             <div class="product-card__header">
@@ -666,7 +764,7 @@
             <a href="#" class="product-card__link">Explore PayGlocal's RBI authorisation <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           </div>
 
-          <div class="product-card" style="grid-column: span 2;">
+          <div class="product-card">
             <div class="product-card__header">
               <div class="product-card__icon" aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="18" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="currentColor" stroke-width="1.5"/></svg>
@@ -677,6 +775,15 @@
             <p class="product-card__desc">Enterprise-grade security at every layer of the payment lifecycle - strong authentication, end-to-end encryption, continuous monitoring and access controls. Customer and transaction data stays protected in transit, in use and at rest.</p>
             <a href="#" class="product-card__link">Explore security &amp; data protection <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           </div>
+        </div>
+        <div class="products__carousel-nav">
+          <button class="products__carousel-btn" type="button" aria-label="Previous product" data-dir="-1">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="products__carousel-btn" type="button" aria-label="Next product" data-dir="1">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
         </div>
       </div>
     </div>
