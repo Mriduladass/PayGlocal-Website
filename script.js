@@ -13,7 +13,12 @@ function initTabs() {
         btns.forEach(b => b.classList.remove('active'));
         panels.forEach(p => p.classList.remove('active'));
         btn.classList.add('active');
-        panels[i] && panels[i].classList.add('active');
+        if (panels[i]) {
+          panels[i].classList.add('active');
+          panels[i].querySelectorAll('.products__carousel').forEach(c => {
+            c.dispatchEvent(new Event('tab-shown'));
+          });
+        }
       });
     });
   });
@@ -343,48 +348,279 @@ function initHeroTagline() {
 }
 
 
-// ── Why PayGlocal cards: swipe-in + active highlight ─────────
-function initWhyCards() {
-  const cards = Array.from(document.querySelectorAll('.why__card'));
-  if (!cards.length) return;
+// ── Stats ribbon wave ─────────────────────────────────────────
+function initStatsWave() {
+  const canvas = document.getElementById('stats-wave');
+  if (!canvas) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    cards.forEach(c => c.classList.add('in-view'));
-    return;
+  const ctx = canvas.getContext('2d');
+
+  function resize() {
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
   }
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
 
-  // Swipe each card in when it enters the viewport
-  const enterObs = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        const idx = cards.indexOf(entry.target);
-        setTimeout(() => entry.target.classList.add('in-view'), idx * 80);
-        enterObs.unobserve(entry.target);
+  // Two ribbon bundles, each made of parallel sine curves whose
+  // amplitude follows a bell curve across the bundle — matching
+  // the expanding / contracting ribbon look of the source image.
+  const bundles = [
+    { yRatio: 0.38, lines: 32, spread: 4.5, amp: 62, freq: 0.0042, speed: 0.022, phase: 0 },
+    { yRatio: 0.68, lines: 24, spread: 3.8, amp: 44, freq: 0.0055, speed: 0.018, phase: 2.1 },
+  ];
+
+  let t = 0;
+  let animId;
+
+  function drawBundle(b, W, H) {
+    const centerY = H * b.yRatio;
+    for (let i = 0; i < b.lines; i++) {
+      const ratio    = i / (b.lines - 1);
+      // Bell-curve amplitude: peaks at the bundle centre, tapers at edges
+      const ampScale = Math.sin(ratio * Math.PI);
+      const amp      = b.amp * ampScale;
+      const baseY    = centerY + (i - b.lines / 2) * b.spread;
+      const alpha    = 0.035 + 0.09 * ampScale;
+
+      ctx.beginPath();
+      for (let x = 0; x <= W + 2; x += 2) {
+        const y = baseY + amp * Math.sin(x * b.freq - (t * b.speed + b.phase));
+        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
       }
-    });
-  }, { threshold: 0.15 });
-
-  cards.forEach(c => enterObs.observe(c));
-
-  // Highlight the card closest to the vertical centre of the viewport
-  function updateActive() {
-    const mid = window.innerHeight / 2;
-    let closest = null;
-    let minDist = Infinity;
-
-    cards.forEach(c => {
-      if (!c.classList.contains('in-view')) return;
-      const rect = c.getBoundingClientRect();
-      const cardMid = rect.top + rect.height / 2;
-      const dist = Math.abs(cardMid - mid);
-      if (dist < minDist) { minDist = dist; closest = c; }
-    });
-
-    cards.forEach(c => c.classList.toggle('active', c === closest));
+      ctx.strokeStyle = `rgba(255,255,255,${alpha.toFixed(3)})`;
+      ctx.lineWidth   = 0.9;
+      ctx.stroke();
+    }
   }
 
-  window.addEventListener('scroll', updateActive, { passive: true });
-  updateActive();
+  function draw() {
+    const W = canvas.width;
+    const H = canvas.height;
+    ctx.clearRect(0, 0, W, H);
+    bundles.forEach(b => drawBundle(b, W, H));
+    t += 1;
+    animId = requestAnimationFrame(draw);
+  }
+
+  draw();
+  window.addEventListener('pagehide', () => cancelAnimationFrame(animId));
+}
+
+// ── Why PayGlocal interactive phone ───────────────────────────
+function initWhyScroll() {
+  const section = document.getElementById('why');
+  if (!section) return;
+
+  const slides  = Array.from(section.querySelectorAll('.why__slide'));
+  const steps   = Array.from(section.querySelectorAll('.why__step'));
+  const dots    = Array.from(section.querySelectorAll('.why__phone-dot'));
+  const prevBtn = section.querySelector('.why__phone-prev');
+  const nextBtn = section.querySelector('.why__phone-next');
+  const N = slides.length;
+  if (!N) return;
+
+  let current = 0;
+
+  function goTo(idx) {
+    if (idx === current || idx < 0 || idx >= N) return;
+    slides[current].classList.remove('why__slide--active');
+    slides[idx].classList.add('why__slide--active');
+    steps.forEach((s, i) => s.classList.toggle('why__step--active', i === idx));
+    dots.forEach((d, i) => d.classList.toggle('why__phone-dot--active', i === idx));
+    if (prevBtn) prevBtn.disabled = idx === 0;
+    if (nextBtn) nextBtn.disabled = idx === N - 1;
+    current = idx;
+  }
+
+  // Step list clicks
+  steps.forEach((step, i) => {
+    step.addEventListener('click', () => goTo(i));
+  });
+
+  // Prev / next buttons
+  if (prevBtn) {
+    prevBtn.disabled = true;
+    prevBtn.addEventListener('click', () => goTo(current - 1));
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => goTo(current + 1));
+  }
+}
+
+// ── Products track carousel ───────────────────────────────────
+function initProductCarousel() {
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll('.products__carousel').forEach(carousel => {
+    const grid = carousel.querySelector('.products__grid');
+    if (!grid) return;
+    const originalCards = Array.from(grid.querySelectorAll('.product-card'));
+    const N = originalCards.length;
+    if (!N) return;
+
+    // Build card structure: content wrapper at top, illustration at bottom.
+    // Guard on product-card__content (not illustration) so data-illus-src cards
+    // with a pre-existing illustration div still get restructured correctly.
+    originalCards.forEach(card => {
+      if (card.querySelector('.product-card__content')) return;
+      const illus = document.createElement('div');
+      illus.className = 'product-card__illustration';
+      const src = card.dataset.illusSrc;
+      if (src) {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = '';
+        img.setAttribute('aria-hidden', 'true');
+        illus.appendChild(img);
+      }
+      const content = document.createElement('div');
+      content.className = 'product-card__content';
+      while (card.firstChild) content.appendChild(card.firstChild);
+      card.appendChild(content);
+      card.appendChild(illus);
+    });
+
+    // Track: [clone(N-2), clone(N-1), card[0], ..., card[N-1], clone(0), clone(1)]
+    const CLONES = 2;
+    for (let i = 0; i < CLONES; i++) {
+      grid.prepend(originalCards[(N - 1 - i + N) % N].cloneNode(true));
+    }
+    for (let i = 0; i < CLONES; i++) {
+      grid.appendChild(originalCards[i % N].cloneNode(true));
+    }
+
+    const all = Array.from(grid.children);
+    const CARD_GAP = 20;
+    const INTERVAL = 3200;
+    let current = CLONES;
+    let busy = false;
+    let timer = null;
+    let busySafe = null;
+
+    // BUG FIX 1: read actual rendered card width so the offset is correct at every
+    // responsive breakpoint (CSS changes card width to 280px at <=1024px).
+    function cardWidth() {
+      const w = all[CLONES] ? all[CLONES].offsetWidth : 0;
+      return w > 0 ? w : 340;
+    }
+
+    function getOffset(idx) {
+      const cw = cardWidth();
+      return carousel.offsetWidth / 2 - cw / 2 - idx * (cw + CARD_GAP);
+    }
+
+    function setCardTransitions(value) {
+      all.forEach(c => { c.style.transition = value; });
+    }
+
+    function render(animate) {
+      grid.style.transition = animate
+        ? 'transform 0.5s cubic-bezier(0.16,1,0.3,1)'
+        : 'none';
+      if (!animate) grid.offsetHeight;
+      grid.style.transform = `translateX(${getOffset(current)}px)`;
+      all.forEach((c, i) => { c.dataset.pos = i === current ? 'active' : ''; });
+    }
+
+    // Silent clone-to-real jump: suppress card transitions to prevent scale flash
+    function jumpIfClone() {
+      if (current >= CLONES && current < CLONES + N) return;
+      if (current < CLONES) current += N;
+      else current -= N;
+      setCardTransitions('none');
+      render(false);
+      grid.offsetHeight;
+      setCardTransitions('');
+    }
+
+    // BUG FIX 5: respect prefers-reduced-motion (mirrors the hero carousel logic)
+    function startTimer() {
+      if (prefersReduced) return;
+      clearInterval(timer);
+      timer = setInterval(() => navigate(1), INTERVAL);
+    }
+
+    function stopTimer() {
+      clearInterval(timer);
+    }
+
+    function navigate(dir) {
+      if (busy || carousel.offsetWidth === 0) return;
+      busy = true;
+      current += dir;
+      render(true);
+      // BUG FIX 3: if transitionend never fires (background tab, interrupted paint),
+      // this timeout guarantees busy is cleared so the carousel doesn't freeze.
+      clearTimeout(busySafe);
+      busySafe = setTimeout(() => { busy = false; }, 700);
+    }
+
+    render(false);
+    // BUG FIX 4: only start the timer for panels that are actually visible on load
+    if (carousel.offsetWidth > 0) startTimer();
+
+    // Only handle the GRID's own transitionend — card scale bubbles fire with the
+    // same propertyName and would trigger the clone-jump mid-animation without this check
+    grid.addEventListener('transitionend', e => {
+      if (e.target !== grid || e.propertyName !== 'transform') return;
+      clearTimeout(busySafe); // normal end — cancel the safety fallback
+      jumpIfClone();
+      busy = false;
+    });
+
+    // Pause auto-play on hover; resume on leave
+    carousel.addEventListener('mouseenter', stopTimer);
+    carousel.addEventListener('mouseleave', () => { if (carousel.offsetWidth > 0) startTimer(); });
+
+    // Touch swipe
+    let touchStartX = 0;
+    carousel.addEventListener('touchstart', e => {
+      touchStartX = e.touches[0].clientX;
+      stopTimer();
+    }, { passive: true });
+    carousel.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 40) navigate(dx > 0 ? -1 : 1);
+      if (carousel.offsetWidth > 0) startTimer();
+    }, { passive: true });
+
+    // Prev/next buttons — reset the countdown so the timer doesn't fire
+    // immediately after a manual click
+    carousel.querySelectorAll('.products__carousel-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        navigate(parseInt(btn.dataset.dir, 10));
+        startTimer();
+      });
+    });
+
+    // Click a non-active real card to jump directly to it
+    all.forEach((card, i) => {
+      if (i < CLONES || i >= CLONES + N) return;
+      card.addEventListener('click', () => {
+        if (i === current || busy) return;
+        busy = true;
+        current = i;
+        render(true);
+        startTimer();
+      });
+    });
+
+    // Re-layout and start auto-play when a hidden tab panel becomes visible
+    carousel.addEventListener('tab-shown', () => requestAnimationFrame(() => {
+      render(false);
+      startTimer();
+    }));
+
+    // BUG FIX 2: re-center on window resize — card width changes at the 1024px
+    // breakpoint so the offset must be recalculated when the viewport crosses it
+    let resizeId = null;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeId);
+      resizeId = setTimeout(() => render(false), 100);
+    }, { passive: true });
+  });
 }
 
 // ── Init ──────────────────────────────────────────────────────
@@ -401,6 +637,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initProblemExpand();
   initWhyExpand();
   initWave();
+  initStatsWave();
   initHeroTagline();
-  initWhyCards();
+  initWhyScroll();
+  initProductCarousel();
 });
