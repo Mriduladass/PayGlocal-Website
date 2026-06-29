@@ -25,7 +25,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="styles.css" />
@@ -173,8 +173,10 @@
 <header class="nav" role="banner">
   <div class="nav__inner">
     <a href="/" class="nav__logo" aria-label="PayGlocal home">
-      <img src="assets/logos/logo-white.svg" alt="PayGlocal" width="140" height="25" />
+      <img src="assets/logos/PayGlocal logo-blue.svg" alt="PayGlocal" width="130" height="24" />
     </a>
+
+    <span class="nav__ai-pill">AI labs+</span>
 
     <nav class="nav__links" aria-label="Main navigation">
       <div class="nav__item">
@@ -210,22 +212,17 @@
         </div>
       </div>
 
-      <div class="nav__item">
-        <a href="#" class="nav__link">
-          Solutions
-          <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-
-      <a href="#developer" class="nav__link">Developers</a>
-      <a href="#partners" class="nav__link">Partners</a>
-      <a href="#" class="nav__link">Pricing</a>
+      <a href="#" class="nav__link">Solution</a>
       <a href="#" class="nav__link">Resources</a>
+      <a href="#" class="nav__link">Partner Program</a>
+      <a href="#developer" class="nav__link">Developer Guide</a>
+      <a href="#" class="nav__link">Company</a>
+      <a href="#" class="nav__link">Pricing</a>
     </nav>
 
     <div class="nav__actions">
-      <a href="#" class="btn btn--outline btn--sm">Log in</a>
-      <a href="#" class="btn btn--primary btn--sm">Get started</a>
+      <a href="#" class="btn btn--outline btn--sm">Log In</a>
+      <a href="#" class="btn btn--dark btn--sm">Get Started</a>
     </div>
 
     <button class="nav__mobile-toggle" id="mobile-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -256,235 +253,151 @@
      HERO (F01)
      ============================================================ -->
 <main id="main">
+<div class="fold-wrap">
 <section class="hero" aria-labelledby="hero-heading">
-  <div class="hero__bg" aria-hidden="true">
-    <div class="hero__bg-grid"></div>
-    <div class="hero__bg-radial"></div>
-    <div class="hero__bg-blob"></div>
-  </div>
-
   <div class="hero__inner">
-    <!-- Content -->
+
+    <!-- Centered content -->
     <div class="hero__content">
-      <div class="hero__tag fade-up">
-        <span class="tag">
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="5"/></svg>
-          RBI-Authorised &bull; Certificate No. 250/2025
-        </span>
+      <div class="hero__rbi-pill fade-up fade-up--delay-1">
+        RBI-Authorised &bull; Certificate No. 250/2025
       </div>
 
       <h1 class="hero__heading fade-up fade-up--delay-1" id="hero-heading">
-        India's End-to-End Cross-Border Payments Infrastructure
-        <span class="line-2">International and domestic payments on one RBI-authorized stack</span>
+        <span class="hero__heading-line1">India's End-to-End</span>
+        <span class="hero__heading-gradient">Cross-Border Payments Infrastructure</span>
       </h1>
 
-      <p class="hero__body fade-up fade-up--delay-2">
-        One platform where international payments and domestic payments run on the same RBI-authorized stack, for flows in and out of India.
-      </p>
+      <p class="hero__subtext fade-up fade-up--delay-2">One platform where International payments and domestic payments run on the same RBI-authorized stack, for flows in and out of India.</p>
 
       <div class="hero__actions fade-up fade-up--delay-3">
         <a href="#" class="btn btn--primary">
-          Collect international payments
+          Collect international payments now
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a href="#" class="btn btn--outline">Talk to an expert</a>
+        <a href="#" class="btn btn--white">Talk to an expert</a>
       </div>
 
-      <div class="hero__trust fade-up fade-up--delay-3">
-        <div class="hero__trust-avatars" aria-hidden="true">
-          <div class="hero__trust-avatar">AI</div>
-          <div class="hero__trust-avatar">MM</div>
-          <div class="hero__trust-avatar">SW</div>
-          <div class="hero__trust-avatar">FC</div>
-        </div>
-        <span>Trusted by 8,000+ merchants across India</span>
+      <div class="hero__stats fade-up fade-up--delay-4">
+        <span class="hero__stat-item">
+          <span class="hero__stat-num" data-target="8000" data-suffix="+">8,000+</span>
+          <span class="hero__stat-label">merchants</span>
+        </span>
+        <span class="hero__stat-sep">&middot;</span>
+        <span class="hero__stat-item">
+          <span class="hero__stat-prefix">Up to </span><span class="hero__stat-num" data-target="96" data-suffix="%">96%</span>
+          <span class="hero__stat-label">PSR</span>
+        </span>
+        <span class="hero__stat-sep">&middot;</span>
+        <span class="hero__stat-item">
+          <span class="hero__stat-num" data-target="4" data-prefix="$" data-suffix="B+">$4B+</span>
+          <span class="hero__stat-label">cross-border payments processed</span>
+        </span>
+        <span class="hero__stat-sep">&middot;</span>
+        <span class="hero__stat-item">
+          <span class="hero__stat-num" data-target="180" data-suffix="+">180+</span>
+          <span class="hero__stat-label">countries</span>
+        </span>
       </div>
     </div>
 
-    <!-- Visual -->
-    <div class="hero__visual" aria-hidden="true">
-      <div class="hero__card-stack">
-        <!-- Back cards -->
-        <div class="hero__card hero__card--back-1">
-          <div class="hero__card-header">
-            <span class="hero__card-label">Global Coverage</span>
-          </div>
-          <div class="hero__card-stat">
-            <div class="hero__card-stat-value"><span>180</span>+</div>
-            <div class="hero__card-stat-label">Countries supported</div>
-          </div>
+    <!-- Stat card carousel -->
+    <div class="hero__carousel fade-up fade-up--delay-3" aria-hidden="true">
+      <div class="hero__carousel-track">
+
+        <div class="hero__stat-card" data-pos="active">
+          <img src="assets/logos/01.png" class="hero__stat-card-img" alt="">
         </div>
 
-        <div class="hero__card hero__card--back-2">
-          <div class="hero__card-header">
-            <span class="hero__card-label">Volume processed</span>
-          </div>
-          <div class="hero__card-stat">
-            <div class="hero__card-stat-value"><span>$4B</span>+</div>
-            <div class="hero__card-stat-label">Cross-border payments</div>
-          </div>
+        <div class="hero__stat-card" data-pos="next">
+          <img src="assets/logos/02.png" class="hero__stat-card-img" alt="">
         </div>
 
-        <!-- Main card -->
-        <div class="hero__card hero__card--main">
-          <div class="hero__card-header">
-            <span class="hero__card-label">Payment success rate</span>
-            <span class="hero__card-badge">Live</span>
-          </div>
-          <div class="hero__card-stat">
-            <div class="hero__card-stat-value">
-              <span data-target="96" data-suffix="%">96%</span>
-            </div>
-            <div class="hero__card-stat-label">vs. 75-80% industry average</div>
-          </div>
-          <div class="hero__card-bar">
-            <div class="hero__card-bar-fill" style="width:96%"></div>
-          </div>
-          <div class="hero__card-row">
-            <span>Industry avg.</span>
-            <strong>75-80%</strong>
-          </div>
-          <div class="hero__card-row">
-            <span>PayGlocal</span>
-            <strong style="color: var(--accent)">Up to 96%</strong>
-          </div>
-          <div class="hero__card-row">
-            <span>FIRA/FIRC</span>
-            <strong style="color: var(--accent)">Auto-generated</strong>
-          </div>
+        <div class="hero__stat-card" data-pos="hidden">
+          <img src="assets/logos/03.png" class="hero__stat-card-img" alt="">
         </div>
 
-        <!-- Floating badges -->
-        <div class="hero__float-badge hero__float-badge--tl">
-          <div class="hero__float-badge-inner">
-            <div class="hero__float-icon">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/></svg>
-            </div>
-            RBI Authorised
-          </div>
+        <div class="hero__stat-card" data-pos="prev">
+          <img src="assets/logos/04.png" class="hero__stat-card-img" alt="">
         </div>
 
-        <div class="hero__float-badge hero__float-badge--br">
-          <div class="hero__float-badge-inner">
-            <div class="hero__float-icon">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            FIRA auto-generated
-          </div>
-        </div>
       </div>
+
+      <div class="hero__carousel-dots">
+        <button class="hero__carousel-dot active" aria-label="Slide 1"></button>
+        <button class="hero__carousel-dot" aria-label="Slide 2"></button>
+        <button class="hero__carousel-dot" aria-label="Slide 3"></button>
+        <button class="hero__carousel-dot" aria-label="Slide 4"></button>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+<!-- ============================================================
+     TRUSTED BY - MARQUEE (F02)
+     ============================================================ -->
+<section class="trusted" aria-label="Trusted by India's leading businesses">
+  <div class="trusted__marquee-outer">
+    <div class="trusted__marquee-track">
+      <div class="trusted__marquee-logo"><img src="assets/logos/ixigo-payglocal payments customer.png" alt="ixigo"/></div>
+      <div class="trusted__marquee-logo"><img src="assets/logos/nish_hair-payglocal payments customer.png" alt="Nish Hair"/></div>
+      <div class="trusted__marquee-logo"><img src="assets/logos/Globalbee-payglocal payments customer.png" alt="GlobalBees"/></div>
+      <div class="trusted__marquee-logo"><img src="assets/logos/Firstcry- payglocal payments customer.png" alt="FirstCry"/></div>
+      <div class="trusted__marquee-logo"><img src="assets/logos/Swiggy-payglocal payments customer.png" alt="Swiggy"/></div>
+      <div class="trusted__marquee-logo"><img src="assets/logos/MakeMyTrip-Payglocal payments customer.png" alt="MakeMyTrip"/></div>
+      <div class="trusted__marquee-logo"><img src="assets/logos/Air India-PayGlocal Payments customer.png" alt="Air India"/></div>
+      <div class="trusted__marquee-logo"><img src="assets/logos/Policy Bazaar-Payglocal Payments customer.png" alt="Policy Bazaar"/></div>
+      <!-- duplicate set for seamless loop -->
+      <div class="trusted__marquee-logo" aria-hidden="true"><img src="assets/logos/ixigo-payglocal payments customer.png" alt=""/></div>
+      <div class="trusted__marquee-logo" aria-hidden="true"><img src="assets/logos/nish_hair-payglocal payments customer.png" alt=""/></div>
+      <div class="trusted__marquee-logo" aria-hidden="true"><img src="assets/logos/Globalbee-payglocal payments customer.png" alt=""/></div>
+      <div class="trusted__marquee-logo" aria-hidden="true"><img src="assets/logos/Firstcry- payglocal payments customer.png" alt=""/></div>
+      <div class="trusted__marquee-logo" aria-hidden="true"><img src="assets/logos/Swiggy-payglocal payments customer.png" alt=""/></div>
+      <div class="trusted__marquee-logo" aria-hidden="true"><img src="assets/logos/MakeMyTrip-Payglocal payments customer.png" alt=""/></div>
+      <div class="trusted__marquee-logo" aria-hidden="true"><img src="assets/logos/Air India-PayGlocal Payments customer.png" alt=""/></div>
+      <div class="trusted__marquee-logo" aria-hidden="true"><img src="assets/logos/Policy Bazaar-Payglocal Payments customer.png" alt=""/></div>
     </div>
   </div>
 </section>
+</div><!-- /.fold-wrap -->
 
 <!-- ============================================================
      STATS BAR
      ============================================================ -->
 <div class="stats-bar" aria-label="Platform statistics">
   <div class="stats-bar__inner">
-    <div class="stats-bar__item">
-      <span class="stats-bar__value">8,000+</span>
-      <span class="stats-bar__label">Merchants</span>
+    <div class="stats-bar__card">
+      <div class="stats-bar__value" data-target="8000" data-suffix="+">8,000+</div>
+      <div class="stats-bar__label">Merchants</div>
     </div>
-    <div class="stats-bar__item">
-      <span class="stats-bar__value">Up to 96%</span>
-      <span class="stats-bar__label">Payment success rate</span>
+    <div class="stats-bar__card">
+      <div class="stats-bar__value" data-target="96" data-prefix="Up to " data-suffix="%">Up to 96%</div>
+      <div class="stats-bar__label">Payment success rate</div>
     </div>
-    <div class="stats-bar__item">
-      <span class="stats-bar__value">$4B+</span>
-      <span class="stats-bar__label">Cross-border payments processed</span>
+    <div class="stats-bar__card">
+      <div class="stats-bar__value" data-target="4" data-prefix="$" data-suffix="B+">$4B+</div>
+      <div class="stats-bar__label">Cross-border payments processed</div>
     </div>
-    <div class="stats-bar__item">
-      <span class="stats-bar__value">180+</span>
-      <span class="stats-bar__label">Countries</span>
+    <div class="stats-bar__card">
+      <div class="stats-bar__value" data-target="180" data-suffix="+">180+</div>
+      <div class="stats-bar__label">Countries</div>
     </div>
   </div>
 </div>
 
-<!-- ============================================================
-     TRUSTED BY (F02)
-     ============================================================ -->
-<section class="trusted reveal" aria-label="Trusted by India's leading businesses">
-  <div class="container">
-    <p class="trusted__heading">Trusted by India's leading global businesses</p>
-    <div class="trusted__logos" role="list">
-      <div class="trusted__logo" role="listitem" title="Air India - PayGlocal cross-border payments customer">Air India</div>
-      <div class="trusted__logo" role="listitem" title="MakeMyTrip - PayGlocal cross-border payments customer">MakeMyTrip</div>
-      <div class="trusted__logo" role="listitem" title="Swiggy - PayGlocal cross-border payments customer">Swiggy</div>
-      <div class="trusted__logo" role="listitem" title="FirstCry - PayGlocal cross-border payments customer">FirstCry</div>
-      <div class="trusted__logo" role="listitem" title="ixigo - PayGlocal cross-border payments customer">ixigo</div>
-      <div class="trusted__logo" role="listitem" title="PolicyBazaar - PayGlocal cross-border payments customer">PolicyBazaar</div>
-      <div class="trusted__logo" role="listitem" title="Nish Hair - PayGlocal cross-border payments customer">Nish Hair</div>
-      <div class="trusted__logo" role="listitem" title="GlobalBees - PayGlocal cross-border payments customer">GlobalBees</div>
-    </div>
-  </div>
-</section>
 
 
 <!-- ============================================================
      THE PROBLEM (F03)
      ============================================================ -->
-<section class="section section--dark" id="problem" aria-labelledby="problem-heading">
+<section class="section section--problem" id="problem" aria-labelledby="problem-heading">
   <div class="container">
-    <div class="problem__layout">
-      <div>
-        <div class="section__tag reveal">
-          <span class="tag">The Problem</span>
-        </div>
-        <h2 class="section__heading reveal" id="problem-heading">
-          Why do international payments fail in India?
-        </h2>
-        <p class="section__sub reveal">
-          Most international payments don't fail by accident - they fail by design. The average international payment success rate in India is 75-80%, which means for every five cross-border transactions your business processes, one simply doesn't go through.
-        </p>
-
-        <div class="problem__stat-box reveal">
-          <div class="problem__big-number">
-            1 in 5
-            <span class="red"> fails</span>
-          </div>
-          <div class="problem__stat-label">cross-border transactions at the average Indian payment gateway - costing you revenue on every fifth sale</div>
-        </div>
-      </div>
-
-      <div class="problem__reasons reveal">
-        <div class="problem__reason">
-          <div class="problem__reason-icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <div>
-            <div class="problem__reason-title">Wrong acquiring path</div>
-            <div class="problem__reason-desc">The transaction is routed through an acquiring bank that has a poor relationship with the customer's issuing bank, resulting in a soft decline.</div>
-          </div>
-        </div>
-        <div class="problem__reason">
-          <div class="problem__reason-icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2 10h20" stroke="currentColor" stroke-width="1.5"/></svg>
-          </div>
-          <div>
-            <div class="problem__reason-title">Checkout the card network doesn't recognise</div>
-            <div class="problem__reason-desc">A checkout that doesn't present correctly in the customer's currency or geography triggers a decline before the payment even reaches the bank.</div>
-          </div>
-        </div>
-        <div class="problem__reason">
-          <div class="problem__reason-icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <div>
-            <div class="problem__reason-title">Fraud rules that block real customers</div>
-            <div class="problem__reason-desc">Overly aggressive fraud rules block genuine customers, reducing approval rates and damaging customer experience without catching actual fraud.</div>
-          </div>
-        </div>
-        <div class="problem__reason">
-          <div class="problem__reason-icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 14s1.5 2 3 2 3-2 3-2M9 10h.01M15 10h.01M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </div>
-          <div>
-            <div class="problem__reason-title">Missing compliance documentation</div>
-            <div class="problem__reason-desc">FIRA/FIRC documents requiring manual bank follow-ups that take 3+ days per remittance, creating reconciliation headaches and compliance risk.</div>
-          </div>
-        </div>
-      </div>
+    <div class="problem__header">
+      <h2 class="problem__subheading reveal" id="problem-heading">Why do <span class="problem__heading-blue">international payments fail</span> in India?</h2>
+      <p class="problem__sub reveal reveal--delay-1">Most international payments don't fail by accident - they fail by design. The average international payment success rate in India is 75-80%, which means for every five cross-border transactions your business processes, one simply doesn't go through.</p>
+      <p class="problem__reasons reveal reveal--delay-2">Reasons: Wrong acquiring path, checkout the card network doesn't recognise, fraud rules that block real customers</p>
     </div>
   </div>
 </section>
@@ -493,63 +406,77 @@
 <!-- ============================================================
      WHY PAYGLOCAL (F03 continued)
      ============================================================ -->
-<section class="section" id="why" aria-labelledby="why-heading">
-  <div class="container">
-    <div class="section__header--center">
-      <div class="section__tag">
+<section class="section section--why" id="why" aria-labelledby="why-heading">
+  <div class="why__container">
+
+    <div class="why__left">
+      <div class="why__label reveal">
         <span class="tag">Why PayGlocal</span>
       </div>
-      <h2 class="section__heading reveal" id="why-heading">
-        Most platforms treat cross-border as a feature.<br>
-        <em>PayGlocal built the entire platform around it.</em>
+      <h2 class="why__heading reveal" id="why-heading">
+        Most platforms treat<br>cross-border as a feature.<br>
+        <em>We built the entire<br>platform around it.</em>
       </h2>
-      <p class="section__sub section__sub--center reveal">
-        When cross-border payments are an afterthought, the infrastructure shows it: failed transactions, missing compliance documents, FX rates you can't audit. PayGlocal was built cross-border-first from day one - with domestic payments running on the same RBI-authorised stack.
-      </p>
+      <p class="why__sub reveal reveal--delay-1">When cross-border payments are an afterthought, the infrastructure shows it: failed transactions, missing compliance documents, FX rates you can't audit. PayGlocal was built cross-border-first from day one.</p>
+
+      <div class="why__cards">
+        <div class="why__card">
+          <div class="why__card-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="why__card-body">
+            <div class="why__card-stat">Up to 96%</div>
+            <div class="why__card-title">Cross-border payment success rate</div>
+            <div class="why__card-desc">Intelligent routing, issuer-level logic and real-time fraud scoring engineered to approve more international payments on the first attempt - against a 75-80% industry average in India.</div>
+          </div>
+        </div>
+
+        <div class="why__card">
+          <div class="why__card-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="currentColor" stroke-width="2"/><path d="M14 2v6h6M9 13h6M9 17h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="why__card-body">
+            <div class="why__card-title">FIRA automation on every inward remittance</div>
+            <div class="why__card-desc">Every cross-border payment into India requires remittance documentation. PayGlocal generates FIRA automatically at settlement and delivers it to your inbox. No bank visit, no wait.</div>
+          </div>
+        </div>
+
+        <div class="why__card">
+          <div class="why__card-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2"/></svg>
+          </div>
+          <div class="why__card-body">
+            <div class="why__card-title">RBI-authorised: PA-CB (inward + outward) and PA-O</div>
+            <div class="why__card-desc">One of the few platforms in India holding both the cross-border and online payment aggregator licences from the RBI (Certificate No. 250/2025). Every transaction fully authorised and fully compliant.</div>
+          </div>
+        </div>
+
+        <div class="why__card">
+          <div class="why__card-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="currentColor" stroke-width="2"/></svg>
+          </div>
+          <div class="why__card-body">
+            <div class="why__card-title">Inward, outward and domestic. One platform.</div>
+            <div class="why__card-desc">International payments coming in, outward remittances going out, domestic payments across India. One RBI-authorised stack, one integration, one reconciliation.</div>
+          </div>
+        </div>
+
+        <div class="why__card">
+          <div class="why__card-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="why__card-body">
+            <div class="why__card-title">A fraud engine that blocks threats, not customers</div>
+            <div class="why__card-desc">Device, card and location signals scored in real time before every authorisation - built to separate bad actors from genuine buyers, so your approval rate goes up.</div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="why__cards">
-      <div class="why__card why__card--wide reveal">
-        <div class="why__card-icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="why__card-value">Up to 96%</div>
-        <div class="why__card-title">Cross-border payment success rate</div>
-        <div class="why__card-desc">Intelligent routing, issuer-level logic and real-time fraud scoring, engineered to approve more international payments on the first attempt - against a 75-80% industry average in India.</div>
-      </div>
-
-      <div class="why__card reveal">
-        <div class="why__card-icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="currentColor" stroke-width="1.5"/><path d="M14 2v6h6M9 13h6M9 17h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </div>
-        <div class="why__card-title">FIRA automation on every inward remittance</div>
-        <div class="why__card-desc">PayGlocal generates FIRA automatically at settlement and delivers it to your inbox. No bank visit, no wait. Zero manual steps.</div>
-      </div>
-
-      <div class="why__card reveal">
-        <div class="why__card-icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="1.5"/></svg>
-        </div>
-        <div class="why__card-title">RBI-authorised: PA-CB (inward + outward) and PA-O</div>
-        <div class="why__card-desc">One of the few platforms in India holding both the cross-border and online payment aggregator licences from the RBI (Certificate No. 250/2025). Every transaction is fully authorised and fully compliant.</div>
-      </div>
-
-      <div class="why__card reveal">
-        <div class="why__card-icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="currentColor" stroke-width="1.5"/></svg>
-        </div>
-        <div class="why__card-title">Inward, outward and domestic. One platform.</div>
-        <div class="why__card-desc">International payments coming in, outward remittances going out, domestic payments across India. One RBI-authorised stack, one integration, one reconciliation.</div>
-      </div>
-
-      <div class="why__card reveal">
-        <div class="why__card-icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="1.5"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="why__card-title">A fraud engine that blocks threats, not customers</div>
-        <div class="why__card-desc">Device, card and location signals scored in real time before every authorisation - built to separate bad actors from genuine buyers, so your approval rate goes up.</div>
-      </div>
+    <div class="why__right">
+      <img src="assets/logos/UI.png" alt="PayGlocal dashboard" class="why__ui-img">
     </div>
+
   </div>
 </section>
 
@@ -1265,7 +1192,7 @@ window.<span class="code--key">location</span>.<span class="code--key">href</spa
     <div class="footer__grid">
       <div class="footer__brand">
         <div class="footer__logo">
-          <img src="assets/logos/logo-white.svg" alt="PayGlocal" width="140" height="25" />
+          <img src="assets/logos/PayGlocal Logo White.svg" alt="PayGlocal" width="140" height="25" />
         </div>
         <p class="footer__tagline">India's RBI-authorised end-to-end cross-border payments infrastructure. International + domestic on one stack.</p>
         <div class="footer__rbi-badge">
